@@ -1,217 +1,103 @@
-// ==============================
-// MOBILE MENU TOGGLE
-// ==============================
-const mobileMenu = document.querySelector('.mobile-menu');
-const navLinks = document.querySelector('.nav-links');
+document.addEventListener("DOMContentLoaded", function () {
 
-if (mobileMenu && navLinks) {
-   mobileMenu.addEventListener('click', () => {
-      navLinks.classList.toggle('active');
+    /* =========================
+       1. SERVICES / FEATURES TABS
+    ========================== */
 
-      const spans = mobileMenu.querySelectorAll('span');
+    const tabs = document.querySelectorAll(".service-tab");
+    const contents = document.querySelectorAll(".service-details");
 
-      spans.forEach((span, index) => {
-         const isActive = navLinks.classList.contains('active');
+    function showService(id) {
+        contents.forEach(content => {
+            content.classList.remove("active");
+        });
 
-         span.style.transform = isActive
-            ? (
-               index === 0
-                  ? 'rotate(45deg) translate(5px, 5px)'
-                  : index === 1
-                     ? 'translateX(-20px)'
-                     : 'rotate(-45deg) translate(7px, -6px)'
-            )
-            : 'none';
+        tabs.forEach(tab => {
+            tab.classList.remove("active");
+        });
 
-         span.style.opacity = (isActive && index === 1) ? '0' : '1';
-      });
-   });
-}
+        const targetContent = document.getElementById(id);
+        const targetTab = document.querySelector(`[data-service="${id}"]`);
 
+        if (targetContent) targetContent.classList.add("active");
+        if (targetTab) targetTab.classList.add("active");
+    }
 
-// ==============================
-// ACTIVE MENU ON SCROLL
-// ==============================
-const sections = document.querySelectorAll('section[id]');
-const navItems = document.querySelectorAll('.nav-links a');
+    tabs.forEach(tab => {
+        tab.addEventListener("click", function () {
+            const serviceId = this.getAttribute("data-service");
+            showService(serviceId);
+        });
+    });
 
-function updateActiveMenu() {
-   let current = 'home';
-
-   sections.forEach(section => {
-      const sectionTop = section.offsetTop - 250;
-
-      if (window.scrollY >= sectionTop) {
-         current = section.getAttribute('id');
-      }
-   });
-
-   navItems.forEach(link => {
-      link.classList.remove('active');
-
-      if (link.getAttribute('href') === `#${current}`) {
-         link.classList.add('active');
-      }
-   });
-}
-
-window.addEventListener('scroll', updateActiveMenu);
+    // default first tab active
+    if (tabs.length > 0) {
+        const firstId = tabs[0].getAttribute("data-service");
+        showService(firstId);
+    }
 
 
-// ==============================
-// DOM READY
-// ==============================
-document.addEventListener('DOMContentLoaded', () => {
+    /* =========================
+       2. MESSAGES TOGGLE (LEFT / RIGHT)
+    ========================== */
 
-   // Default active nav
-   const homeLink = document.querySelector('.nav-links a[href="#home"]');
-   navItems.forEach(link => link.classList.remove('active'));
-   if (homeLink) homeLink.classList.add('active');
+    const messageBtns = document.querySelectorAll(".message-btn");
+    const messageBoxes = document.querySelectorAll(".message-box");
 
+    messageBtns.forEach(btn => {
+        btn.addEventListener("click", function () {
 
-   // ==========================
-   // HERO TEXT ROTATION
-   // ==========================
-   const headline = document.getElementById('hero-headline');
-   const paragraph = document.getElementById('hero-paragraph');
+            const target = this.getAttribute("data-message");
 
-   if (headline && paragraph) {
+            messageBtns.forEach(b => b.classList.remove("active"));
+            messageBoxes.forEach(box => box.classList.remove("active"));
 
-      const textSets = [
-         {
-            h1: "PingUp<br>Connect Beyond Limits",
-            p: "Lightning-fast messaging, HD calls, and secure communication in one place."
-         },
-         {
-            h1: "One App.<br>Infinite Connections.",
-            p: "Stay connected with friends and family anytime, anywhere with PingUp."
-         },
-         {
-            h1: "Built For The<br>Future Of Communication",
-            p: "Secure, fast, and modern communication designed for everyone."
-         }
-      ];
+            this.classList.add("active");
 
-      let currentIndex = 0;
-
-      setInterval(() => {
-
-         headline.classList.add('text-fade-out');
-         paragraph.classList.add('text-fade-out');
-
-         setTimeout(() => {
-            currentIndex = (currentIndex + 1) % textSets.length;
-
-            headline.innerHTML = textSets[currentIndex].h1;
-            paragraph.innerHTML = textSets[currentIndex].p;
-
-            headline.classList.remove('text-fade-out');
-            paragraph.classList.remove('text-fade-out');
-         }, 500);
-
-      }, 5000);
-   }
+            const targetBox = document.getElementById(target);
+            if (targetBox) {
+                targetBox.classList.add("active");
+            }
+        });
+    });
 
 
-   // ==========================
-   // SERVICES TABS (FIXED)
-   // ==========================
-   const serviceTabs = document.querySelectorAll('.service-tab');
-   const serviceDetails = document.querySelectorAll('.service-details');
+    /* =========================
+       3. PRIVACY / TERMS / SUPPORT
+    ========================== */
 
-   function showService(index) {
+    const footerBtns = document.querySelectorAll(".footer-link-btn");
+    const footerSections = document.querySelectorAll(".footer-section");
 
-      serviceTabs.forEach(t => t.classList.remove('active'));
-      serviceDetails.forEach(d => {
-         d.classList.remove('active');
-         d.style.display = 'none';
-      });
+    footerBtns.forEach(btn => {
+        btn.addEventListener("click", function () {
 
-      if (serviceTabs[index]) serviceTabs[index].classList.add('active');
-      if (serviceDetails[index]) {
-         serviceDetails[index].classList.add('active');
-         serviceDetails[index].style.display = 'block';
-      }
-   }
+            const target = this.getAttribute("data-footer");
 
-   serviceTabs.forEach((tab, index) => {
-      tab.addEventListener('click', () => {
-         showService(index);
-      });
-   });
+            footerBtns.forEach(b => b.classList.remove("active"));
+            footerSections.forEach(sec => sec.classList.remove("active"));
 
-   // default first tab
-   if (serviceTabs.length > 0) {
-      showService(0);
-   }
+            this.classList.add("active");
+
+            const targetSec = document.getElementById(target);
+            if (targetSec) {
+                targetSec.classList.add("active");
+            }
+        });
+    });
 
 
-   // ==========================
-   // SCROLL ANIMATIONS
-   // ==========================
-   const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-         if (entry.isIntersecting) {
-            entry.target.classList.add('animate');
-         }
-      });
-   }, {
-      threshold: 0.15
-   });
+    /* =========================
+       4. MOBILE MENU
+    ========================== */
 
-   document.querySelectorAll('.fade-in, .testimonial').forEach(el => {
-      observer.observe(el);
-   });
+    const menu = document.querySelector(".mobile-menu");
+    const nav = document.querySelector(".nav-links");
 
+    if (menu) {
+        menu.addEventListener("click", function () {
+            nav.classList.toggle("active");
+        });
+    }
 
-   // ==========================
-   // TESTIMONIAL HOVER EFFECT
-   // ==========================
-   document.querySelectorAll('.testimonial-content').forEach(card => {
-      card.addEventListener('mouseenter', () => {
-         card.style.transform = 'scale(1.02) translateY(-5px)';
-      });
-
-      card.addEventListener('mouseleave', () => {
-         card.style.transform = 'scale(1) translateY(0)';
-      });
-   });
-
-});
-
-
-// ==============================
-// SMOOTH SCROLL
-// ==============================
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-   anchor.addEventListener('click', function (e) {
-      e.preventDefault();
-
-      const target = document.querySelector(this.getAttribute('href'));
-
-      if (target) {
-         target.scrollIntoView({
-            behavior: 'smooth',
-            block: 'start'
-         });
-      }
-
-      if (navLinks) {
-         navLinks.classList.remove('active');
-      }
-   });
-});
-
-
-// ==============================
-// NAVBAR SCROLL EFFECT
-// ==============================
-window.addEventListener('scroll', () => {
-   const navbar = document.querySelector('.navbar');
-   if (!navbar) return;
-
-   navbar.style.borderBottomColor =
-      window.scrollY > 50
-         ? 'rgba(71, 85, 105, 0.2)'
-         : 'rgba(71, 85, 105, 0.1)';
 });
