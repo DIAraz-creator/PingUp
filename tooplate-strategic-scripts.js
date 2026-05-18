@@ -30,6 +30,7 @@ if (mobileMenu && navLinks) {
    });
 }
 
+
 // Active Menu Highlight
 function updateActiveMenu() {
 
@@ -59,18 +60,17 @@ function updateActiveMenu() {
 
 window.addEventListener('scroll', updateActiveMenu);
 
+
 // DOM Loaded
 document.addEventListener('DOMContentLoaded', () => {
 
-   // Navigation Active Default
+   // Default active nav
    const navLinksItems = document.querySelectorAll('.nav-links a');
    const homeLink = document.querySelector('.nav-links a[href="#home"]');
 
    navLinksItems.forEach(link => link.classList.remove('active'));
+   if (homeLink) homeLink.classList.add('active');
 
-   if (homeLink) {
-      homeLink.classList.add('active');
-   }
 
    // HERO TEXT ROTATION
    const headline = document.getElementById('hero-headline');
@@ -119,43 +119,48 @@ document.addEventListener('DOMContentLoaded', () => {
       setInterval(changeText, 5000);
    }
 
-   // SERVICES TAB FUNCTIONALITY FIX
+
+   // =========================
+   // SERVICES TAB FIX (MAIN FIX)
+   // =========================
+
    const serviceTabs = document.querySelectorAll('.service-tab');
    const serviceDetails = document.querySelectorAll('.service-details');
 
+   function showService(target) {
+
+      serviceTabs.forEach(t => t.classList.remove('active'));
+      serviceDetails.forEach(d => d.classList.remove('active'));
+
+      serviceDetails.forEach(d => {
+         d.style.display = 'none';
+      });
+
+      const activeTab = document.querySelector(`.service-tab[data-target="${target}"]`);
+      const activeContent = document.querySelector(`.service-details[data-service="${target}"]`);
+
+      if (activeTab) activeTab.classList.add('active');
+
+      if (activeContent) {
+         activeContent.classList.add('active');
+         activeContent.style.display = 'block';
+      }
+   }
+
    serviceTabs.forEach(tab => {
-
       tab.addEventListener('click', () => {
-
          const target = tab.getAttribute('data-target');
-
-         serviceTabs.forEach(t => t.classList.remove('active'));
-
-         serviceDetails.forEach(detail => {
-            detail.classList.remove('active');
-            detail.style.display = 'none';
-         });
-
-         tab.classList.add('active');
-
-         const activeContent = document.querySelector(
-            `.service-details[data-service="${target}"]`
-         );
-
-         if (activeContent) {
-            activeContent.classList.add('active');
-            activeContent.style.display = 'block';
-         }
+         showService(target);
       });
    });
 
-   // FIRST TAB SHOW FIX
-   serviceDetails.forEach((detail, index) => {
-      detail.style.display = index === 0 ? 'block' : 'none';
-   });
-});
+   // Default show first tab
+   if (serviceTabs.length > 0) {
+      const firstTarget = serviceTabs[0].getAttribute('data-target');
+      showService(firstTarget);
+   }
 
-updateActiveMenu();
+});
 
 
 // Smooth Scrolling
@@ -168,7 +173,6 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
       const target = document.querySelector(this.getAttribute('href'));
 
       if (target) {
-
          target.scrollIntoView({
             behavior: 'smooth',
             block: 'start'
@@ -195,54 +199,16 @@ const observer = new IntersectionObserver((entries) => {
       if (entry.isIntersecting) {
 
          setTimeout(() => {
-
             entry.target.classList.add('animate');
-
-            if (entry.target.classList.contains('counter')) {
-               animateCounter(entry.target);
-            }
-
          }, index * 100);
       }
    });
 
 }, observerOptions);
 
-// Observe Elements
 document.querySelectorAll(
-   '.fade-in, .service-tab, .team-member, .testimonial, .counter'
+   '.fade-in, .service-tab, .testimonial'
 ).forEach(el => observer.observe(el));
-
-
-// Counter Animation
-function animateCounter(element) {
-
-   if (element.classList.contains('animated')) return;
-
-   element.classList.add('animated');
-
-   const target = parseInt(element.getAttribute('data-count'));
-   const increment = target / 80;
-
-   let current = 0;
-
-   const timer = setInterval(() => {
-
-      current += increment;
-
-      const value = Math.floor(current);
-
-      element.textContent = target > 100 ? value : value + '%';
-
-      if (current >= target) {
-
-         element.textContent = target > 100 ? target : target + '%';
-
-         clearInterval(timer);
-      }
-
-   }, 25);
-}
 
 
 // Navbar Scroll Effect
@@ -258,55 +224,6 @@ window.addEventListener('scroll', () => {
    } else {
       navbar.style.borderBottomColor = 'rgba(71, 85, 105, 0.1)';
    }
-});
-
-
-// Contact Form
-const contactForm = document.querySelector('.contact-form');
-
-if (contactForm) {
-
-   contactForm.addEventListener('submit', (e) => {
-
-      e.preventDefault();
-
-      const submitBtn = contactForm.querySelector('.submit-btn');
-      const originalText = submitBtn.textContent;
-
-      submitBtn.textContent = 'Connecting...';
-      submitBtn.style.background = 'linear-gradient(135deg, #10b981, #059669)';
-
-      setTimeout(() => {
-
-         submitBtn.textContent = 'Welcome To PingUp!';
-
-         setTimeout(() => {
-
-            submitBtn.textContent = originalText;
-            submitBtn.style.background = 'linear-gradient(135deg, #64748b, #475569)';
-            contactForm.reset();
-
-         }, 3000);
-
-      }, 2000);
-   });
-}
-
-
-// Hover Effects
-document.querySelectorAll('.service-tab').forEach(tab => {
-
-   tab.addEventListener('mouseenter', () => {
-      if (!tab.classList.contains('active')) {
-         tab.style.transform = 'translateX(5px)';
-      }
-   });
-
-   tab.addEventListener('mouseleave', () => {
-      if (!tab.classList.contains('active')) {
-         tab.style.transform = 'translateX(0)';
-      }
-   });
 });
 
 
