@@ -1,5 +1,9 @@
 @charset "utf-8";
 
+/* =========================
+   BASIC RESET
+========================= */
+
 * {
 	margin: 0;
 	padding: 0;
@@ -14,12 +18,15 @@ body {
 	background: #f8fafc;
 }
 
-/* Navigation */
+/* =========================
+   NAVBAR
+========================= */
+
 .navbar {
 	position: fixed;
 	top: 0;
 	width: 100%;
-	background: #FFFFFF;
+	background: #fff;
 	padding: 1.5rem 5%;
 	z-index: 1000;
 	border-bottom: 1px solid rgba(71, 85, 105, 0.1);
@@ -33,193 +40,174 @@ body {
 	margin: 0 auto;
 }
 
-.logo {
-	font-size: 1.8rem;
-	font-weight: 700;
-	background: linear-gradient(135deg, #475569, #64748b);
-	-webkit-background-clip: text;
-	-webkit-text-fill-color: transparent;
-	text-decoration: none;
-	display: flex;
-	gap: 0.8rem;
-}
+/* =========================
+   HERO (shortened safe)
+========================= */
 
-.nav-links {
-	display: flex;
-	list-style: none;
-	gap: 3rem;
-}
-
-.nav-links a {
-	text-decoration: none;
-	color: #1a202c;
-	font-weight: 500;
-}
-
-/* Hero */
 .hero {
 	height: 100vh;
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	text-align: center;
-	color: white;
 	background: linear-gradient(135deg, #1e293b, #475569);
-	position: relative;
+	color: white;
+	text-align: center;
 }
 
-.hero-content {
-	max-width: 900px;
-	padding: 0 2rem;
-}
-
-.hero h1 {
-	font-size: clamp(2.8rem, 7vw, 5rem);
-	font-weight: 800;
-}
-
-.hero p {
-	font-size: 1.2rem;
-	margin-top: 1rem;
-}
-
-.cta-button {
-	display: inline-block;
-	margin-top: 2rem;
-	padding: 1rem 2.5rem;
-	background: white;
-	color: #1e293b;
-	border-radius: 50px;
-	font-weight: 700;
-	text-decoration: none;
-}
-.section {
-	padding: 8rem 5%;
-	max-width: 1200px;
-	margin: 0 auto;
-}
-
-/* SERVICES */
-.services {
-	background: linear-gradient(135deg, #f8fafc, #e2e8f0);
-}
-
-.services-layout {
-	display: grid;
-	grid-template-columns: 1fr 400px;
-	gap: 4rem;
-}
-
-.services-content {
-	background: rgba(255,255,255,0.8);
-	padding: 2rem;
-	border-radius: 20px;
-}
+/* =========================
+   SERVICES (FEATURE FIX)
+========================= */
 
 .service-details {
 	display: none;
+	opacity: 0;
+	transform: translateY(20px);
+	transition: all 0.4s ease;
 }
 
 .service-details.active {
 	display: block;
+	opacity: 1;
+	transform: translateY(0);
 }
 
-.services-tabs {
-	display: flex;
-	flex-direction: column;
-	gap: 1rem;
-}
+/* =========================
+   SERVICE TABS
+========================= */
 
 .service-tab {
-	padding: 1rem;
-	border-radius: 15px;
 	cursor: pointer;
-	background: white;
 }
 
-/* ABOUT */
-.about-section {
-	background: linear-gradient(135deg, #1e293b, #475569);
-	color: white;
+.service-tab.active {
+	background: rgba(71, 85, 105, 0.15);
 }
 
-.about {
-	display: grid;
-	grid-template-columns: 1fr 1fr;
-	gap: 4rem;
-	align-items: center;
+/* =========================
+   MESSAGES SECTION FIX
+========================= */
+
+.message-box {
+	display: none;
+	opacity: 0;
+	transition: all 0.3s ease;
 }
 
-.about-content h2 {
-	font-size: 2.5rem;
-	font-weight: 800;
+.message-box.active {
+	display: block;
+	opacity: 1;
 }
 
-.about-content p {
-	margin-top: 1rem;
-	color: rgba(255,255,255,0.85);
-}
-/* TEAM */
-.team {
-	background: #f8fafc;
+/* buttons */
+.message-btn.active {
+	font-weight: bold;
+	color: #1e293b;
 }
 
-.team-grid {
-	display: flex;
-	flex-wrap: wrap;
-	gap: 3rem;
-	justify-content: center;
-}
+/* =========================
+   REVIEW FORM FIX (WHITE TEXT ISSUE)
+========================= */
 
-.member-card {
-	padding: 2rem;
-	border-radius: 20px;
-	background: white;
-	text-align: center;
-}
-
-/* TESTIMONIALS */
-.testimonials {
-	background: #e2e8f0;
-}
-
-.testimonials-container {
-	display: grid;
-	grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-	gap: 2rem;
-}
-
-/* CONTACT */
-.contact {
-	background: #1e293b;
-	color: white;
-}
-
-.contact-form input,
-.contact-form textarea {
+.review-form input,
+.review-form textarea {
 	width: 100%;
 	padding: 1rem;
-	margin-bottom: 1rem;
-	border-radius: 10px;
-	border: none;
+	border-radius: 12px;
+	border: 2px solid rgba(71, 85, 105, 0.2);
+	background: #fff;
+	color: #1a202c;
+	font-size: 1rem;
 }
 
-/* FOOTER */
+.review-form input::placeholder,
+.review-form textarea::placeholder {
+	color: #64748b;
+}
+
+.review-form input:focus,
+.review-form textarea:focus {
+	outline: none;
+	border-color: #475569;
+	box-shadow: 0 0 0 3px rgba(71, 85, 105, 0.15);
+}
+
+/* =========================
+   FOOTER TABS (PRIVACY / TERMS / SUPPORT)
+========================= */
+
+.footer-section {
+	display: none;
+	opacity: 0;
+	transition: all 0.4s ease;
+}
+
+.footer-section.active {
+	display: block;
+	opacity: 1;
+}
+
+.footer-link-btn {
+	cursor: pointer;
+	color: rgba(255, 255, 255, 0.7);
+	transition: 0.3s;
+}
+
+.footer-link-btn.active {
+	color: #fff;
+	font-weight: 600;
+}
+
+/* =========================
+   FOOTER
+========================= */
+
 .footer {
 	background: #0f172a;
 	color: white;
+	padding: 3rem 5%;
 	text-align: center;
-	padding: 2rem;
 }
 
-/* MOBILE */
-@media (max-width: 900px) {
-	.services-layout,
-	.about {
-		grid-template-columns: 1fr;
-	}
+/* =========================
+   MOBILE MENU
+========================= */
+
+.nav-links {
+	display: flex;
+	gap: 2rem;
+}
+
+.nav-links.active {
+	display: flex;
+}
+
+.mobile-menu {
+	display: none;
+	cursor: pointer;
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (max-width: 940px) {
 
 	.nav-links {
 		display: none;
+		flex-direction: column;
+		background: white;
+		position: absolute;
+		top: 100%;
+		left: 0;
+		right: 0;
+		padding: 2rem;
+	}
+
+	.mobile-menu {
+		display: block;
+	}
+
+	.nav-links.active {
+		display: flex;
 	}
 }
