@@ -1,103 +1,222 @@
-document.addEventListener("DOMContentLoaded", function () {
+// =========================
+// Mobile Menu Toggle
+// =========================
+const mobileMenu = document.querySelector('.mobile-menu');
+const navLinks = document.querySelector('.nav-links');
 
-    /* =========================
-       1. SERVICES / FEATURES TABS
-    ========================== */
+if (mobileMenu && navLinks) {
+   mobileMenu.addEventListener('click', () => {
+      navLinks.classList.toggle('active');
 
-    const tabs = document.querySelectorAll(".service-tab");
-    const contents = document.querySelectorAll(".service-details");
+      const spans = mobileMenu.querySelectorAll('span');
 
-    function showService(id) {
-        contents.forEach(content => {
-            content.classList.remove("active");
-        });
+      spans.forEach((span, index) => {
+         const isActive = navLinks.classList.contains('active');
 
-        tabs.forEach(tab => {
-            tab.classList.remove("active");
-        });
+         span.style.transform = isActive
+            ? (index === 0
+               ? 'rotate(45deg) translate(5px, 5px)'
+               : index === 1
+                  ? 'translateX(-20px)'
+                  : 'rotate(-45deg) translate(7px, -6px)')
+            : 'none';
 
-        const targetContent = document.getElementById(id);
-        const targetTab = document.querySelector(`[data-service="${id}"]`);
-
-        if (targetContent) targetContent.classList.add("active");
-        if (targetTab) targetTab.classList.add("active");
-    }
-
-    tabs.forEach(tab => {
-        tab.addEventListener("click", function () {
-            const serviceId = this.getAttribute("data-service");
-            showService(serviceId);
-        });
-    });
-
-    // default first tab active
-    if (tabs.length > 0) {
-        const firstId = tabs[0].getAttribute("data-service");
-        showService(firstId);
-    }
+         span.style.opacity = isActive && index === 1 ? '0' : '1';
+      });
+   });
+}
 
 
-    /* =========================
-       2. MESSAGES TOGGLE (LEFT / RIGHT)
-    ========================== */
+// =========================
+// Active Menu Highlight
+// =========================
+function updateActiveMenu() {
+   const sections = document.querySelectorAll('section[id]');
+   const navLinksItems = document.querySelectorAll('.nav-links a');
 
-    const messageBtns = document.querySelectorAll(".message-btn");
-    const messageBoxes = document.querySelectorAll(".message-box");
+   let current = 'home';
 
-    messageBtns.forEach(btn => {
-        btn.addEventListener("click", function () {
+   sections.forEach(section => {
+      const sectionTop = section.offsetTop;
 
-            const target = this.getAttribute("data-message");
+      if (window.scrollY >= sectionTop - 200) {
+         current = section.getAttribute('id');
+      }
+   });
 
-            messageBtns.forEach(b => b.classList.remove("active"));
-            messageBoxes.forEach(box => box.classList.remove("active"));
+   navLinksItems.forEach(link => {
+      link.classList.remove('active');
 
-            this.classList.add("active");
+      if (link.getAttribute('href').substring(1) === current) {
+         link.classList.add('active');
+      }
+   });
+}
 
-            const targetBox = document.getElementById(target);
-            if (targetBox) {
-                targetBox.classList.add("active");
-            }
-        });
-    });
-
-
-    /* =========================
-       3. PRIVACY / TERMS / SUPPORT
-    ========================== */
-
-    const footerBtns = document.querySelectorAll(".footer-link-btn");
-    const footerSections = document.querySelectorAll(".footer-section");
-
-    footerBtns.forEach(btn => {
-        btn.addEventListener("click", function () {
-
-            const target = this.getAttribute("data-footer");
-
-            footerBtns.forEach(b => b.classList.remove("active"));
-            footerSections.forEach(sec => sec.classList.remove("active"));
-
-            this.classList.add("active");
-
-            const targetSec = document.getElementById(target);
-            if (targetSec) {
-                targetSec.classList.add("active");
-            }
-        });
-    });
+window.addEventListener('scroll', updateActiveMenu);
 
 
-    /* =========================
-       4. MOBILE MENU
-    ========================== */
+// =========================
+// DOM Loaded
+// =========================
+document.addEventListener('DOMContentLoaded', () => {
 
-    const menu = document.querySelector(".mobile-menu");
-    const nav = document.querySelector(".nav-links");
+   // Default active nav
+   const navLinksItems = document.querySelectorAll('.nav-links a');
+   const homeLink = document.querySelector('.nav-links a[href="#home"]');
 
-    if (menu) {
-        menu.addEventListener("click", function () {
-            nav.classList.toggle("active");
-        });
-    }
+   navLinksItems.forEach(link => link.classList.remove('active'));
+   if (homeLink) homeLink.classList.add('active');
 
+
+   // =========================
+   // HERO TEXT ROTATION
+   // =========================
+   const headline = document.getElementById('hero-headline');
+   const paragraph = document.getElementById('hero-paragraph');
+
+   if (headline && paragraph) {
+
+      const textSets = [
+         {
+            h1: "PingUp<br>Connect Beyond Limits",
+            p: "Experience lightning-fast messaging, crystal-clear voice calls, ultra-HD video chats, and seamless media sharing — all in one powerful communication platform."
+         },
+         {
+            h1: "One App.<br>Infinite Connections.",
+            p: "Chat with friends, connect with family, share memories instantly, and enjoy smooth communication anytime anywhere with PingUp."
+         },
+         {
+            h1: "Built For The<br>Future Of Communication",
+            p: "PingUp combines speed, privacy, security, and modern technology to create a next-generation communication experience."
+         }
+      ];
+
+      let currentIndex = 0;
+
+      function changeText() {
+         headline.classList.add('text-fade-out');
+         paragraph.classList.add('text-fade-out');
+
+         setTimeout(() => {
+            currentIndex = (currentIndex + 1) % textSets.length;
+
+            headline.innerHTML = textSets[currentIndex].h1;
+            paragraph.innerHTML = textSets[currentIndex].p;
+
+            headline.classList.remove('text-fade-out');
+            paragraph.classList.remove('text-fade-out');
+         }, 500);
+      }
+
+      setInterval(changeText, 5000);
+   }
+
+
+   // =========================
+   // SERVICES TAB FIX (CORRECTED)
+   // =========================
+   const serviceTabs = document.querySelectorAll('.service-tab');
+   const serviceDetails = document.querySelectorAll('.service-details');
+
+   function showService(index) {
+
+      serviceTabs.forEach(t => t.classList.remove('active'));
+      serviceDetails.forEach(d => {
+         d.classList.remove('active');
+         d.style.display = 'none';
+      });
+
+      if (serviceTabs[index]) serviceTabs[index].classList.add('active');
+
+      if (serviceDetails[index]) {
+         serviceDetails[index].classList.add('active');
+         serviceDetails[index].style.display = 'block';
+      }
+   }
+
+   serviceTabs.forEach((tab, index) => {
+      tab.addEventListener('click', () => {
+         showService(index);
+      });
+   });
+
+   // default first tab
+   if (serviceTabs.length > 0) {
+      showService(0);
+   }
+});
+
+
+// =========================
+// Smooth Scrolling
+// =========================
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+   anchor.addEventListener('click', function (e) {
+      e.preventDefault();
+
+      const target = document.querySelector(this.getAttribute('href'));
+
+      if (target) {
+         target.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+         });
+      }
+
+      if (navLinks) {
+         navLinks.classList.remove('active');
+      }
+   });
+});
+
+
+// =========================
+// Scroll Animations
+// =========================
+const observerOptions = {
+   threshold: 0.15,
+   rootMargin: '0px 0px -100px 0px'
+};
+
+const observer = new IntersectionObserver((entries) => {
+   entries.forEach((entry, index) => {
+      if (entry.isIntersecting) {
+         setTimeout(() => {
+            entry.target.classList.add('animate');
+         }, index * 100);
+      }
+   });
+}, observerOptions);
+
+document.querySelectorAll('.fade-in, .service-tab, .testimonial')
+   .forEach(el => observer.observe(el));
+
+
+// =========================
+// Navbar Scroll Effect
+// =========================
+window.addEventListener('scroll', () => {
+   const navbar = document.querySelector('.navbar');
+   if (!navbar) return;
+
+   if (window.scrollY > 50) {
+      navbar.style.borderBottomColor = 'rgba(71, 85, 105, 0.2)';
+   } else {
+      navbar.style.borderBottomColor = 'rgba(71, 85, 105, 0.1)';
+   }
+});
+
+
+// =========================
+// Testimonials Hover
+// =========================
+document.querySelectorAll('.testimonial-content').forEach(testimonial => {
+   testimonial.addEventListener('mouseenter', () => {
+      testimonial.style.transform = 'scale(1.02) translateY(-5px)';
+   });
+
+   testimonial.addEventListener('mouseleave', () => {
+      testimonial.style.transform = 'scale(1) translateY(0)';
+   });
 });
