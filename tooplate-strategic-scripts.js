@@ -4,40 +4,51 @@
 const mobileMenu = document.querySelector('.mobile-menu');
 const navLinks = document.querySelector('.nav-links');
 
-mobileMenu.addEventListener('click', () => {
-   navLinks.classList.toggle('active');
+if (mobileMenu && navLinks) {
 
-   const spans = mobileMenu.querySelectorAll('span');
+   mobileMenu.addEventListener('click', () => {
 
-   spans.forEach((span, index) => {
-      span.style.transform = navLinks.classList.contains('active')
-         ? (index === 0
-            ? 'rotate(45deg) translate(5px, 5px)'
-            : index === 1
-               ? 'opacity(0)'
-               : 'rotate(-45deg) translate(7px, -6px)')
-         : 'none';
+      navLinks.classList.toggle('active');
+
+      const spans = mobileMenu.querySelectorAll('span');
+
+      spans.forEach((span, index) => {
+
+         span.style.transform = navLinks.classList.contains('active')
+            ? (index === 0
+               ? 'rotate(45deg) translate(5px, 5px)'
+               : index === 1
+                  ? 'translateX(-20px)'
+                  : 'rotate(-45deg) translate(7px, -6px)')
+            : 'none';
+
+         span.style.opacity =
+            navLinks.classList.contains('active') && index === 1
+               ? '0'
+               : '1';
+      });
    });
-});
+}
 
 // Active Menu Highlight
 function updateActiveMenu() {
+
    const sections = document.querySelectorAll('section[id]');
    const navLinksItems = document.querySelectorAll('.nav-links a');
 
    let current = 'home';
 
-   if (window.scrollY > 100) {
-      sections.forEach(section => {
-         const sectionTop = section.offsetTop;
+   sections.forEach(section => {
 
-         if (scrollY >= sectionTop - 200) {
-            current = section.getAttribute('id');
-         }
-      });
-   }
+      const sectionTop = section.offsetTop;
+
+      if (window.scrollY >= sectionTop - 200) {
+         current = section.getAttribute('id');
+      }
+   });
 
    navLinksItems.forEach(link => {
+
       link.classList.remove('active');
 
       if (link.getAttribute('href').substring(1) === current) {
@@ -48,9 +59,10 @@ function updateActiveMenu() {
 
 window.addEventListener('scroll', updateActiveMenu);
 
-// Initialize
+// DOM Loaded
 document.addEventListener('DOMContentLoaded', () => {
 
+   // Navigation Active Default
    const navLinksItems = document.querySelectorAll('.nav-links a');
    const homeLink = document.querySelector('.nav-links a[href="#home"]');
 
@@ -67,6 +79,7 @@ document.addEventListener('DOMContentLoaded', () => {
    if (headline && paragraph) {
 
       const textSets = [
+
          {
             h1: "PingUp<br>Connect Beyond Limits",
             p: "Experience lightning-fast messaging, crystal-clear voice calls, ultra-HD video chats, and seamless media sharing — all in one powerful communication platform."
@@ -106,7 +119,7 @@ document.addEventListener('DOMContentLoaded', () => {
       setInterval(changeText, 5000);
    }
 
-   // SERVICES TAB FIX
+   // SERVICES TAB FUNCTIONALITY FIX
    const serviceTabs = document.querySelectorAll('.service-tab');
    const serviceDetails = document.querySelectorAll('.service-details');
 
@@ -116,24 +129,40 @@ document.addEventListener('DOMContentLoaded', () => {
 
          const target = tab.getAttribute('data-target');
 
+         // Remove all active classes
          serviceTabs.forEach(t => {
             t.classList.remove('active');
          });
 
          serviceDetails.forEach(detail => {
             detail.classList.remove('active');
+            detail.style.display = 'none';
          });
 
+         // Activate clicked tab
          tab.classList.add('active');
 
+         // Show matching content
          const activeContent = document.querySelector(
             `.service-details[data-service="${target}"]`
          );
 
          if (activeContent) {
+
             activeContent.classList.add('active');
+            activeContent.style.display = 'block';
          }
       });
+   });
+
+   // FIRST TAB SHOW FIX
+   serviceDetails.forEach((detail, index) => {
+
+      if (index === 0) {
+         detail.style.display = 'block';
+      } else {
+         detail.style.display = 'none';
+      }
    });
 });
 
@@ -149,13 +178,16 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
       const target = document.querySelector(this.getAttribute('href'));
 
       if (target) {
+
          target.scrollIntoView({
             behavior: 'smooth',
             block: 'start'
          });
       }
 
-      navLinks.classList.remove('active');
+      if (navLinks) {
+         navLinks.classList.remove('active');
+      }
    });
 });
 
@@ -186,10 +218,11 @@ const observer = new IntersectionObserver((entries) => {
 }, observerOptions);
 
 // Observe Elements
-document.querySelectorAll('.fade-in, .service-tab, .team-member, .testimonial, .counter')
-   .forEach(el => {
-      observer.observe(el);
-   });
+document.querySelectorAll(
+   '.fade-in, .service-tab, .team-member, .testimonial, .counter'
+).forEach(el => {
+   observer.observe(el);
+});
 
 // Counter Animation
 function animateCounter(element) {
@@ -209,7 +242,9 @@ function animateCounter(element) {
 
       const value = Math.floor(current);
 
-      element.textContent = target > 100 ? value : value + '%';
+      element.textContent = target > 100
+         ? value
+         : value + '%';
 
       if (current >= target) {
 
@@ -227,6 +262,9 @@ function animateCounter(element) {
 window.addEventListener('scroll', () => {
 
    const navbar = document.querySelector('.navbar');
+
+   if (!navbar) return;
+
    const scrolled = window.scrollY;
 
    if (scrolled > 50) {
@@ -277,3 +315,48 @@ if (contactForm) {
       }, 2000);
    });
 }
+
+// Hover Effects
+document.querySelectorAll('.service-tab').forEach(tab => {
+
+   tab.addEventListener('mouseenter', () => {
+
+      if (!tab.classList.contains('active')) {
+
+         tab.style.transform = 'translateX(5px)';
+         tab.style.boxShadow =
+            '0 10px 25px rgba(71, 85, 105, 0.1)';
+      }
+   });
+
+   tab.addEventListener('mouseleave', () => {
+
+      if (!tab.classList.contains('active')) {
+
+         tab.style.transform = 'translateX(0)';
+         tab.style.boxShadow = 'none';
+      }
+   });
+});
+
+// Testimonials Hover
+document.querySelectorAll('.testimonial-content').forEach(testimonial => {
+
+   testimonial.addEventListener('mouseenter', () => {
+
+      testimonial.style.transform =
+         'scale(1.02) translateY(-5px)';
+
+      testimonial.style.boxShadow =
+         '0 25px 50px rgba(71, 85, 105, 0.2)';
+   });
+
+   testimonial.addEventListener('mouseleave', () => {
+
+      testimonial.style.transform =
+         'scale(1) translateY(0)';
+
+      testimonial.style.boxShadow =
+         '0 15px 35px rgba(71, 85, 105, 0.1)';
+   });
+});
