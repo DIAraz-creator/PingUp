@@ -1,292 +1,252 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Strategic Consulting</title>
 
-    <title>PingUp - Connect Beyond Limits</title>
+<style>
+/* ===== BASE ===== */
+* { margin:0; padding:0; box-sizing:border-box; }
 
-    <!-- CSS LINK -->
-    <link rel="stylesheet" href="tooplate-strategic-style.css">
+body {
+	font-family: Arial, sans-serif;
+	background:#f8fafc;
+	color:#1e293b;
+}
+
+/* ===== NAV ===== */
+.navbar {
+	position:fixed;
+	top:0;
+	width:100%;
+	background:white;
+	padding:15px 30px;
+	border-bottom:1px solid #ddd;
+	z-index:1000;
+}
+
+.nav-links {
+	display:flex;
+	gap:20px;
+	list-style:none;
+}
+
+/* ===== HERO ===== */
+.hero {
+	height:100vh;
+	display:flex;
+	align-items:center;
+	justify-content:center;
+	text-align:center;
+	background:linear-gradient(135deg,#1e293b,#475569);
+	color:white;
+}
+
+.cta-button {
+	display:inline-block;
+	margin-top:20px;
+	padding:12px 25px;
+	background:white;
+	color:#1e293b;
+	border-radius:30px;
+	text-decoration:none;
+	font-weight:bold;
+}
+
+/* ===== SERVICES ===== */
+.section { padding:80px 20px; }
+
+.services-layout {
+	display:grid;
+	grid-template-columns:1fr 300px;
+	gap:20px;
+}
+
+.service-tab {
+	padding:10px;
+	background:white;
+	margin-bottom:10px;
+	cursor:pointer;
+	border-radius:10px;
+}
+
+.service-tab.active {
+	background:#cbd5e1;
+}
+
+.service-details {
+	display:none;
+	padding:20px;
+	background:white;
+	border-radius:10px;
+}
+
+.service-details.active {
+	display:block;
+}
+
+/* ===== CONTACT ===== */
+.contact-form input,
+.contact-form textarea {
+	width:100%;
+	padding:10px;
+	margin:10px 0;
+	border:1px solid #ccc;
+	border-radius:8px;
+	background:white;
+	color:#1e293b;
+}
+
+/* ===== FOOTER ===== */
+.footer {
+	background:#0f172a;
+	color:white;
+	padding:30px;
+	text-align:center;
+}
+
+.footer-links a {
+	color:white;
+	margin:0 10px;
+	cursor:pointer;
+}
+
+.footer-content {
+	display:none;
+	margin-top:15px;
+	color:#cbd5e1;
+}
+
+.footer-content.active {
+	display:block;
+}
+
+/* ===== MOBILE ===== */
+@media(max-width:768px){
+	.services-layout{
+		grid-template-columns:1fr;
+	}
+}
+</style>
 </head>
 
 <body>
 
-<!-- Navigation -->
-<nav class="navbar">
-    <div class="nav-container">
-
-        <a href="#home" class="logo">
-            <div class="logo-icon">💬</div>
-            <span>PingUp</span>
-        </a>
-
-        <ul class="nav-links">
-            <li><a href="#home">Home</a></li>
-            <li><a href="#services">Features</a></li>
-            <li><a href="#about">About</a></li>
-            <li><a href="#team">Why PingUp</a></li>
-            <li><a href="#founder">Founder</a></li>
-            <li><a href="#testimonials">Reviews</a></li>
-            <li><a href="#contact">Join Us</a></li>
-        </ul>
-
-        <div class="mobile-menu">
-            <span></span><span></span><span></span>
-        </div>
-
-    </div>
-</nav>
+<!-- NAV -->
+<div class="navbar">
+	<ul class="nav-links">
+		<li>Home</li>
+		<li>Services</li>
+		<li>Contact</li>
+	</ul>
+</div>
 
 <!-- HERO -->
-<section id="home" class="hero">
-    <div class="geometric-shapes">
-        <div class="geo-shape"></div>
-        <div class="geo-shape"></div>
-        <div class="geo-shape"></div>
-        <div class="geo-shape"></div>
-        <div class="geo-shape"></div>
-    </div>
-
-    <div class="hero-content">
-        <h1>PingUp<br>Connect Beyond Limits</h1>
-
-        <p>
-            PingUp is a next-generation communication platform built for fast messaging,
-            HD voice/video calls, and secure global connections.
-        </p>
-
-        <a href="#services" class="cta-button">Start Connecting</a>
-    </div>
+<section class="hero">
+	<div>
+		<h1>Strategic Consulting</h1>
+		<p>We help businesses grow smarter</p>
+		<a href="#" class="cta-button">Get Started</a>
+	</div>
 </section>
 
-<!-- FEATURES -->
-<section id="services" class="services">
+<!-- SERVICES -->
+<section class="section">
 
-    <div class="section services-container">
+	<div class="services-layout">
 
-        <h2 class="section-title fade-in">Everything You Need In One App</h2>
+		<!-- TABS -->
+		<div>
+			<div class="service-tab active" data-target="s1">Service 1</div>
+			<div class="service-tab" data-target="s2">Service 2</div>
+			<div class="service-tab" data-target="s3">Service 3</div>
+		</div>
 
-        <div class="services-layout">
+		<!-- CONTENT -->
+		<div>
+			<div id="s1" class="service-details active">
+				<h3>Service 1</h3>
+				<p>Details of service 1...</p>
+			</div>
 
-            <div class="services-content">
+			<div id="s2" class="service-details">
+				<h3>Service 2</h3>
+				<p>Details of service 2...</p>
+			</div>
 
-                <div class="service-details active">
-                    <h3>Instant Smart Messaging</h3>
+			<div id="s3" class="service-details">
+				<h3>Service 3</h3>
+				<p>Details of service 3...</p>
+			</div>
+		</div>
 
-                    <div class="service-subtitle">
-                        Fast • Secure • Real-Time
-                    </div>
-
-                    <p>
-                        PingUp delivers ultra-fast messaging with strong encryption and smooth performance.
-                    </p>
-
-                    <ul class="service-features">
-                        <li><span class="feature-check">✓</span> Real-Time Messaging</li>
-                        <li><span class="feature-check">✓</span> Group Chats</li>
-                        <li><span class="feature-check">✓</span> Online Status</li>
-                        <li><span class="feature-check">✓</span> End-to-End Security</li>
-                    </ul>
-                </div>
-
-            </div>
-
-            <div class="services-tabs">
-                <div class="service-tab active">
-                    <div class="tab-icon">💬</div>
-                    <div class="tab-content">
-                        <h4>Messaging</h4>
-                        <p>Fast & Secure</p>
-                    </div>
-                </div>
-
-                <div class="service-tab">
-                    <div class="tab-icon">📹</div>
-                    <div class="tab-content">
-                        <h4>Video Calls</h4>
-                        <p>HD Quality</p>
-                    </div>
-                </div>
-
-                <div class="service-tab">
-                    <div class="tab-icon">🎧</div>
-                    <div class="tab-content">
-                        <h4>Voice Calls</h4>
-                        <p>Crystal Clear</p>
-                    </div>
-                </div>
-
-                <div class="service-tab">
-                    <div class="tab-icon">🔒</div>
-                    <div class="tab-content">
-                        <h4>Privacy</h4>
-                        <p>Fully Secure</p>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-    </div>
+	</div>
 </section>
 
-<!-- ABOUT -->
-<section id="about" class="about-section">
+<!-- CONTACT -->
+<section class="section">
+	<h2>Contact</h2>
 
-    <div class="section about fade-in">
-
-        <div class="about-content">
-
-            <div class="highlight">
-                The Future Of Communication Starts Here
-            </div>
-
-            <h2>Welcome To PingUp</h2>
-
-            <p>
-                PingUp is a modern communication platform designed for speed, privacy and global connectivity.
-            </p>
-
-            <div class="about-features">
-                <div class="feature-item">
-                    <div class="feature-icon">💬</div>
-                    <div class="feature-text">Real-Time Messaging</div>
-                </div>
-
-                <div class="feature-item">
-                    <div class="feature-icon">📹</div>
-                    <div class="feature-text">HD Video Calling</div>
-                </div>
-
-                <div class="feature-item">
-                    <div class="feature-icon">🔒</div>
-                    <div class="feature-text">Secure Privacy</div>
-                </div>
-
-                <div class="feature-item">
-                    <div class="feature-icon">🌍</div>
-                    <div class="feature-text">Global Connectivity</div>
-                </div>
-            </div>
-
-        </div>
-    </div>
-</section>
-
-<!-- WHY PINGUP -->
-<section id="team" class="about-section">
-
-    <div class="section about fade-in">
-
-        <div class="about-content">
-
-            <div class="highlight">Why Millions Choose PingUp</div>
-
-            <h2>Why PingUp</h2>
-
-            <p>
-                Built for performance, privacy and powerful global communication.
-            </p>
-
-            <div class="about-features">
-                <div class="feature-item"><div class="feature-icon">⚡</div><div class="feature-text">Super Fast</div></div>
-                <div class="feature-item"><div class="feature-icon">🔒</div><div class="feature-text">Encrypted Security</div></div>
-                <div class="feature-item"><div class="feature-icon">📹</div><div class="feature-text">HD Calls</div></div>
-                <div class="feature-item"><div class="feature-icon">🌍</div><div class="feature-text">Worldwide Access</div></div>
-            </div>
-
-        </div>
-    </div>
-</section>
-
-<!-- FOUNDER SECTION -->
-<section id="founder" class="about-section">
-
-    <div class="section about fade-in">
-
-        <div class="about-content">
-
-            <div class="highlight">Founder & Visionary Leader</div>
-
-            <h2>Mr. Sheraz (CEO & Founder)</h2>
-
-            <p>
-                Mr. Sheraz is a passionate tech entrepreneur and the founder of PingUp.
-                He built this platform with a vision to connect people globally through
-                fast, secure, and modern communication technology.
-            </p>
-
-            <p>
-                His goal is to make PingUp one of the most reliable communication platforms
-                in the world with simplicity, speed, and privacy at its core.
-            </p>
-
-        </div>
-    </div>
-</section>
-
-<!-- REVIEWS -->
-<section id="testimonials" class="testimonials">
-
-    <div class="section">
-
-        <h2 class="section-title fade-in">User Reviews</h2>
-
-        <div class="testimonials-container">
-
-            <div class="testimonial">
-                <div class="testimonial-content">
-                    <p class="testimonial-text">Amazing app for daily communication!</p>
-                    <div class="testimonial-author">
-                        <div class="author-avatar">AR</div>
-                        <div class="author-info">
-                            <h4>Ali Raza</h4>
-                            <span>Lahore</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-
-        <!-- REVIEW COMMENT FORM -->
-        <div style="margin-top:40px; text-align:center;">
-            <h3>Leave Your Review</h3>
-
-            <form class="contact-form" style="max-width:600px;margin:auto;">
-                <input type="text" placeholder="Your Name">
-                <textarea placeholder="Write your review..."></textarea>
-                <button class="submit-btn" type="submit">Submit Review</button>
-            </form>
-        </div>
-
-    </div>
+	<form class="contact-form">
+		<input type="text" placeholder="Your Name">
+		<textarea placeholder="Your Review"></textarea>
+	</form>
 </section>
 
 <!-- FOOTER -->
-<footer class="footer">
+<div class="footer">
 
-    <div class="footer-content">
+	<div class="footer-links">
+		<a data-target="privacy">Privacy</a>
+		<a data-target="terms">Terms</a>
+		<a data-target="support">Support</a>
+	</div>
 
-        <div class="footer-links">
-            <a href="#privacy">Privacy Policy</a>
-            <a href="#terms">Terms</a>
-            <a href="#support">Support</a>
-        </div>
+	<div id="privacy" class="footer-content active">
+		<p>Privacy policy details here...</p>
+	</div>
 
-        <div class="footer-copyright">
-            © 2026 PingUp. All rights reserved.
-        </div>
+	<div id="terms" class="footer-content">
+		<p>Terms and conditions here...</p>
+	</div>
 
-        <div class="footer-design">
-            Designed for modern communication
-        </div>
+	<div id="support" class="footer-content">
+		<p>Support info here...</p>
+	</div>
 
-    </div>
+</div>
 
-</footer>
+<script>
+// ===== SERVICES TABS =====
+const tabs = document.querySelectorAll(".service-tab");
+const contents = document.querySelectorAll(".service-details");
 
-<script src="tooplate-strategic-scripts.js"></script>
+tabs.forEach(tab => {
+	tab.addEventListener("click", () => {
+
+		tabs.forEach(t => t.classList.remove("active"));
+		contents.forEach(c => c.classList.remove("active"));
+
+		tab.classList.add("active");
+
+		document.getElementById(tab.dataset.target).classList.add("active");
+	});
+});
+
+// ===== FOOTER TABS =====
+const links = document.querySelectorAll(".footer-links a");
+const footers = document.querySelectorAll(".footer-content");
+
+links.forEach(link => {
+	link.addEventListener("click", () => {
+
+		footers.forEach(f => f.classList.remove("active"));
+
+		document.getElementById(link.dataset.target).classList.add("active");
+	});
+});
+</script>
 
 </body>
 </html>
