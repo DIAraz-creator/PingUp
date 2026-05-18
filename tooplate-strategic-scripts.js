@@ -129,26 +129,20 @@ document.addEventListener('DOMContentLoaded', () => {
 
          const target = tab.getAttribute('data-target');
 
-         // Remove all active classes
-         serviceTabs.forEach(t => {
-            t.classList.remove('active');
-         });
+         serviceTabs.forEach(t => t.classList.remove('active'));
 
          serviceDetails.forEach(detail => {
             detail.classList.remove('active');
             detail.style.display = 'none';
          });
 
-         // Activate clicked tab
          tab.classList.add('active');
 
-         // Show matching content
          const activeContent = document.querySelector(
             `.service-details[data-service="${target}"]`
          );
 
          if (activeContent) {
-
             activeContent.classList.add('active');
             activeContent.style.display = 'block';
          }
@@ -157,19 +151,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
    // FIRST TAB SHOW FIX
    serviceDetails.forEach((detail, index) => {
-
-      if (index === 0) {
-         detail.style.display = 'block';
-      } else {
-         detail.style.display = 'none';
-      }
+      detail.style.display = index === 0 ? 'block' : 'none';
    });
 });
 
 updateActiveMenu();
 
 
-// ✅ ADDED FIX: Smooth Scrolling (Why PingUp / Reviews / etc. properly scroll)
+// Smooth Scrolling
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 
    anchor.addEventListener('click', function (e) {
@@ -222,9 +211,8 @@ const observer = new IntersectionObserver((entries) => {
 // Observe Elements
 document.querySelectorAll(
    '.fade-in, .service-tab, .team-member, .testimonial, .counter'
-).forEach(el => {
-   observer.observe(el);
-});
+).forEach(el => observer.observe(el));
+
 
 // Counter Animation
 function animateCounter(element) {
@@ -244,15 +232,11 @@ function animateCounter(element) {
 
       const value = Math.floor(current);
 
-      element.textContent = target > 100
-         ? value
-         : value + '%';
+      element.textContent = target > 100 ? value : value + '%';
 
       if (current >= target) {
 
-         element.textContent = target > 100
-            ? target
-            : target + '%';
+         element.textContent = target > 100 ? target : target + '%';
 
          clearInterval(timer);
       }
@@ -260,26 +244,22 @@ function animateCounter(element) {
    }, 25);
 }
 
+
 // Navbar Scroll Effect
 window.addEventListener('scroll', () => {
 
    const navbar = document.querySelector('.navbar');
-
    if (!navbar) return;
 
    const scrolled = window.scrollY;
 
    if (scrolled > 50) {
-
-      navbar.style.background = '#FFFFFF';
       navbar.style.borderBottomColor = 'rgba(71, 85, 105, 0.2)';
-
    } else {
-
-      navbar.style.background = '#FFFFFF';
       navbar.style.borderBottomColor = 'rgba(71, 85, 105, 0.1)';
    }
 });
+
 
 // Contact Form
 const contactForm = document.querySelector('.contact-form');
@@ -291,13 +271,10 @@ if (contactForm) {
       e.preventDefault();
 
       const submitBtn = contactForm.querySelector('.submit-btn');
-
       const originalText = submitBtn.textContent;
 
       submitBtn.textContent = 'Connecting...';
-
-      submitBtn.style.background =
-         'linear-gradient(135deg, #10b981, #059669)';
+      submitBtn.style.background = 'linear-gradient(135deg, #10b981, #059669)';
 
       setTimeout(() => {
 
@@ -306,10 +283,7 @@ if (contactForm) {
          setTimeout(() => {
 
             submitBtn.textContent = originalText;
-
-            submitBtn.style.background =
-               'linear-gradient(135deg, #64748b, #475569)';
-
+            submitBtn.style.background = 'linear-gradient(135deg, #64748b, #475569)';
             contactForm.reset();
 
          }, 3000);
@@ -318,47 +292,32 @@ if (contactForm) {
    });
 }
 
+
 // Hover Effects
 document.querySelectorAll('.service-tab').forEach(tab => {
 
    tab.addEventListener('mouseenter', () => {
-
       if (!tab.classList.contains('active')) {
-
          tab.style.transform = 'translateX(5px)';
-         tab.style.boxShadow =
-            '0 10px 25px rgba(71, 85, 105, 0.1)';
       }
    });
 
    tab.addEventListener('mouseleave', () => {
-
       if (!tab.classList.contains('active')) {
-
          tab.style.transform = 'translateX(0)';
-         tab.style.boxShadow = 'none';
       }
    });
 });
+
 
 // Testimonials Hover
 document.querySelectorAll('.testimonial-content').forEach(testimonial => {
 
    testimonial.addEventListener('mouseenter', () => {
-
-      testimonial.style.transform =
-         'scale(1.02) translateY(-5px)';
-
-      testimonial.style.boxShadow =
-         '0 25px 50px rgba(71, 85, 105, 0.2)';
+      testimonial.style.transform = 'scale(1.02) translateY(-5px)';
    });
 
    testimonial.addEventListener('mouseleave', () => {
-
-      testimonial.style.transform =
-         'scale(1) translateY(0)';
-
-      testimonial.style.boxShadow =
-         '0 15px 35px rgba(71, 85, 105, 0.1)';
+      testimonial.style.transform = 'scale(1) translateY(0)';
    });
 });
