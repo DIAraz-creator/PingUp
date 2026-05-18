@@ -1,9 +1,5 @@
 @charset "utf-8";
 
-/* =========================
-   BASIC RESET
-========================= */
-
 * {
 	margin: 0;
 	padding: 0;
@@ -18,15 +14,12 @@ body {
 	background: #f8fafc;
 }
 
-/* =========================
-   NAVBAR
-========================= */
-
+/* Navigation */
 .navbar {
 	position: fixed;
 	top: 0;
 	width: 100%;
-	background: #fff;
+	background: #FFFFFF;
 	padding: 1.5rem 5%;
 	z-index: 1000;
 	border-bottom: 1px solid rgba(71, 85, 105, 0.1);
@@ -40,174 +33,193 @@ body {
 	margin: 0 auto;
 }
 
-/* =========================
-   HERO (shortened safe)
-========================= */
+.logo {
+	font-size: 1.8rem;
+	font-weight: 700;
+	background: linear-gradient(135deg, #475569, #64748b);
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+	text-decoration: none;
+	display: flex;
+	gap: 0.8rem;
+}
 
+.nav-links {
+	display: flex;
+	list-style: none;
+	gap: 3rem;
+}
+
+.nav-links a {
+	text-decoration: none;
+	color: #1a202c;
+	font-weight: 500;
+}
+
+/* Hero */
 .hero {
 	height: 100vh;
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	background: linear-gradient(135deg, #1e293b, #475569);
-	color: white;
 	text-align: center;
+	color: white;
+	background: linear-gradient(135deg, #1e293b, #475569);
+	position: relative;
 }
 
-/* =========================
-   SERVICES (FEATURE FIX)
-========================= */
+.hero-content {
+	max-width: 900px;
+	padding: 0 2rem;
+}
+
+.hero h1 {
+	font-size: clamp(2.8rem, 7vw, 5rem);
+	font-weight: 800;
+}
+
+.hero p {
+	font-size: 1.2rem;
+	margin-top: 1rem;
+}
+
+.cta-button {
+	display: inline-block;
+	margin-top: 2rem;
+	padding: 1rem 2.5rem;
+	background: white;
+	color: #1e293b;
+	border-radius: 50px;
+	font-weight: 700;
+	text-decoration: none;
+}
+.section {
+	padding: 8rem 5%;
+	max-width: 1200px;
+	margin: 0 auto;
+}
+
+/* SERVICES */
+.services {
+	background: linear-gradient(135deg, #f8fafc, #e2e8f0);
+}
+
+.services-layout {
+	display: grid;
+	grid-template-columns: 1fr 400px;
+	gap: 4rem;
+}
+
+.services-content {
+	background: rgba(255,255,255,0.8);
+	padding: 2rem;
+	border-radius: 20px;
+}
 
 .service-details {
 	display: none;
-	opacity: 0;
-	transform: translateY(20px);
-	transition: all 0.4s ease;
 }
 
 .service-details.active {
 	display: block;
-	opacity: 1;
-	transform: translateY(0);
 }
 
-/* =========================
-   SERVICE TABS
-========================= */
+.services-tabs {
+	display: flex;
+	flex-direction: column;
+	gap: 1rem;
+}
 
 .service-tab {
-	cursor: pointer;
-}
-
-.service-tab.active {
-	background: rgba(71, 85, 105, 0.15);
-}
-
-/* =========================
-   MESSAGES SECTION FIX
-========================= */
-
-.message-box {
-	display: none;
-	opacity: 0;
-	transition: all 0.3s ease;
-}
-
-.message-box.active {
-	display: block;
-	opacity: 1;
-}
-
-/* buttons */
-.message-btn.active {
-	font-weight: bold;
-	color: #1e293b;
-}
-
-/* =========================
-   REVIEW FORM FIX (WHITE TEXT ISSUE)
-========================= */
-
-.review-form input,
-.review-form textarea {
-	width: 100%;
 	padding: 1rem;
-	border-radius: 12px;
-	border: 2px solid rgba(71, 85, 105, 0.2);
-	background: #fff;
-	color: #1a202c;
-	font-size: 1rem;
-}
-
-.review-form input::placeholder,
-.review-form textarea::placeholder {
-	color: #64748b;
-}
-
-.review-form input:focus,
-.review-form textarea:focus {
-	outline: none;
-	border-color: #475569;
-	box-shadow: 0 0 0 3px rgba(71, 85, 105, 0.15);
-}
-
-/* =========================
-   FOOTER TABS (PRIVACY / TERMS / SUPPORT)
-========================= */
-
-.footer-section {
-	display: none;
-	opacity: 0;
-	transition: all 0.4s ease;
-}
-
-.footer-section.active {
-	display: block;
-	opacity: 1;
-}
-
-.footer-link-btn {
+	border-radius: 15px;
 	cursor: pointer;
-	color: rgba(255, 255, 255, 0.7);
-	transition: 0.3s;
+	background: white;
 }
 
-.footer-link-btn.active {
-	color: #fff;
-	font-weight: 600;
-}
-
-/* =========================
-   FOOTER
-========================= */
-
-.footer {
-	background: #0f172a;
+/* ABOUT */
+.about-section {
+	background: linear-gradient(135deg, #1e293b, #475569);
 	color: white;
-	padding: 3rem 5%;
+}
+
+.about {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	gap: 4rem;
+	align-items: center;
+}
+
+.about-content h2 {
+	font-size: 2.5rem;
+	font-weight: 800;
+}
+
+.about-content p {
+	margin-top: 1rem;
+	color: rgba(255,255,255,0.85);
+}
+/* TEAM */
+.team {
+	background: #f8fafc;
+}
+
+.team-grid {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 3rem;
+	justify-content: center;
+}
+
+.member-card {
+	padding: 2rem;
+	border-radius: 20px;
+	background: white;
 	text-align: center;
 }
 
-/* =========================
-   MOBILE MENU
-========================= */
+/* TESTIMONIALS */
+.testimonials {
+	background: #e2e8f0;
+}
 
-.nav-links {
-	display: flex;
+.testimonials-container {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
 	gap: 2rem;
 }
 
-.nav-links.active {
-	display: flex;
+/* CONTACT */
+.contact {
+	background: #1e293b;
+	color: white;
 }
 
-.mobile-menu {
-	display: none;
-	cursor: pointer;
+.contact-form input,
+.contact-form textarea {
+	width: 100%;
+	padding: 1rem;
+	margin-bottom: 1rem;
+	border-radius: 10px;
+	border: none;
 }
 
-/* =========================
-   RESPONSIVE
-========================= */
+/* FOOTER */
+.footer {
+	background: #0f172a;
+	color: white;
+	text-align: center;
+	padding: 2rem;
+}
 
-@media (max-width: 940px) {
+/* MOBILE */
+@media (max-width: 900px) {
+	.services-layout,
+	.about {
+		grid-template-columns: 1fr;
+	}
 
 	.nav-links {
 		display: none;
-		flex-direction: column;
-		background: white;
-		position: absolute;
-		top: 100%;
-		left: 0;
-		right: 0;
-		padding: 2rem;
-	}
-
-	.mobile-menu {
-		display: block;
-	}
-
-	.nav-links.active {
-		display: flex;
 	}
 }
