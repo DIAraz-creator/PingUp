@@ -168,7 +168,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
 updateActiveMenu();
 
-// Smooth Scrolling
+
+// ✅ ADDED FIX: Smooth Scrolling (Why PingUp / Reviews / etc. properly scroll)
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 
    anchor.addEventListener('click', function (e) {
@@ -190,6 +191,7 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
       }
    });
 });
+
 
 // Scroll Animations
 const observerOptions = {
