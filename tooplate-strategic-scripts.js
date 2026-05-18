@@ -1,6 +1,6 @@
-// =========================
-// Mobile Menu Toggle
-// =========================
+// ==============================
+// MOBILE MENU TOGGLE
+// ==============================
 const mobileMenu = document.querySelector('.mobile-menu');
 const navLinks = document.querySelector('.nav-links');
 
@@ -14,40 +14,42 @@ if (mobileMenu && navLinks) {
          const isActive = navLinks.classList.contains('active');
 
          span.style.transform = isActive
-            ? (index === 0
-               ? 'rotate(45deg) translate(5px, 5px)'
-               : index === 1
-                  ? 'translateX(-20px)'
-                  : 'rotate(-45deg) translate(7px, -6px)')
+            ? (
+               index === 0
+                  ? 'rotate(45deg) translate(5px, 5px)'
+                  : index === 1
+                     ? 'translateX(-20px)'
+                     : 'rotate(-45deg) translate(7px, -6px)'
+            )
             : 'none';
 
-         span.style.opacity = isActive && index === 1 ? '0' : '1';
+         span.style.opacity = (isActive && index === 1) ? '0' : '1';
       });
    });
 }
 
 
-// =========================
-// Active Menu Highlight
-// =========================
-function updateActiveMenu() {
-   const sections = document.querySelectorAll('section[id]');
-   const navLinksItems = document.querySelectorAll('.nav-links a');
+// ==============================
+// ACTIVE MENU ON SCROLL
+// ==============================
+const sections = document.querySelectorAll('section[id]');
+const navItems = document.querySelectorAll('.nav-links a');
 
+function updateActiveMenu() {
    let current = 'home';
 
    sections.forEach(section => {
-      const sectionTop = section.offsetTop;
+      const sectionTop = section.offsetTop - 250;
 
-      if (window.scrollY >= sectionTop - 200) {
+      if (window.scrollY >= sectionTop) {
          current = section.getAttribute('id');
       }
    });
 
-   navLinksItems.forEach(link => {
+   navItems.forEach(link => {
       link.classList.remove('active');
 
-      if (link.getAttribute('href').substring(1) === current) {
+      if (link.getAttribute('href') === `#${current}`) {
          link.classList.add('active');
       }
    });
@@ -56,22 +58,20 @@ function updateActiveMenu() {
 window.addEventListener('scroll', updateActiveMenu);
 
 
-// =========================
-// DOM Loaded
-// =========================
+// ==============================
+// DOM READY
+// ==============================
 document.addEventListener('DOMContentLoaded', () => {
 
    // Default active nav
-   const navLinksItems = document.querySelectorAll('.nav-links a');
    const homeLink = document.querySelector('.nav-links a[href="#home"]');
-
-   navLinksItems.forEach(link => link.classList.remove('active'));
+   navItems.forEach(link => link.classList.remove('active'));
    if (homeLink) homeLink.classList.add('active');
 
 
-   // =========================
+   // ==========================
    // HERO TEXT ROTATION
-   // =========================
+   // ==========================
    const headline = document.getElementById('hero-headline');
    const paragraph = document.getElementById('hero-paragraph');
 
@@ -80,21 +80,22 @@ document.addEventListener('DOMContentLoaded', () => {
       const textSets = [
          {
             h1: "PingUp<br>Connect Beyond Limits",
-            p: "Experience lightning-fast messaging, crystal-clear voice calls, ultra-HD video chats, and seamless media sharing — all in one powerful communication platform."
+            p: "Lightning-fast messaging, HD calls, and secure communication in one place."
          },
          {
             h1: "One App.<br>Infinite Connections.",
-            p: "Chat with friends, connect with family, share memories instantly, and enjoy smooth communication anytime anywhere with PingUp."
+            p: "Stay connected with friends and family anytime, anywhere with PingUp."
          },
          {
             h1: "Built For The<br>Future Of Communication",
-            p: "PingUp combines speed, privacy, security, and modern technology to create a next-generation communication experience."
+            p: "Secure, fast, and modern communication designed for everyone."
          }
       ];
 
       let currentIndex = 0;
 
-      function changeText() {
+      setInterval(() => {
+
          headline.classList.add('text-fade-out');
          paragraph.classList.add('text-fade-out');
 
@@ -107,15 +108,14 @@ document.addEventListener('DOMContentLoaded', () => {
             headline.classList.remove('text-fade-out');
             paragraph.classList.remove('text-fade-out');
          }, 500);
-      }
 
-      setInterval(changeText, 5000);
+      }, 5000);
    }
 
 
-   // =========================
-   // SERVICES TAB FIX (CORRECTED)
-   // =========================
+   // ==========================
+   // SERVICES TABS (FIXED)
+   // ==========================
    const serviceTabs = document.querySelectorAll('.service-tab');
    const serviceDetails = document.querySelectorAll('.service-details');
 
@@ -128,7 +128,6 @@ document.addEventListener('DOMContentLoaded', () => {
       });
 
       if (serviceTabs[index]) serviceTabs[index].classList.add('active');
-
       if (serviceDetails[index]) {
          serviceDetails[index].classList.add('active');
          serviceDetails[index].style.display = 'block';
@@ -145,12 +144,45 @@ document.addEventListener('DOMContentLoaded', () => {
    if (serviceTabs.length > 0) {
       showService(0);
    }
+
+
+   // ==========================
+   // SCROLL ANIMATIONS
+   // ==========================
+   const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+         if (entry.isIntersecting) {
+            entry.target.classList.add('animate');
+         }
+      });
+   }, {
+      threshold: 0.15
+   });
+
+   document.querySelectorAll('.fade-in, .testimonial').forEach(el => {
+      observer.observe(el);
+   });
+
+
+   // ==========================
+   // TESTIMONIAL HOVER EFFECT
+   // ==========================
+   document.querySelectorAll('.testimonial-content').forEach(card => {
+      card.addEventListener('mouseenter', () => {
+         card.style.transform = 'scale(1.02) translateY(-5px)';
+      });
+
+      card.addEventListener('mouseleave', () => {
+         card.style.transform = 'scale(1) translateY(0)';
+      });
+   });
+
 });
 
 
-// =========================
-// Smooth Scrolling
-// =========================
+// ==============================
+// SMOOTH SCROLL
+// ==============================
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
    anchor.addEventListener('click', function (e) {
       e.preventDefault();
@@ -171,52 +203,15 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 });
 
 
-// =========================
-// Scroll Animations
-// =========================
-const observerOptions = {
-   threshold: 0.15,
-   rootMargin: '0px 0px -100px 0px'
-};
-
-const observer = new IntersectionObserver((entries) => {
-   entries.forEach((entry, index) => {
-      if (entry.isIntersecting) {
-         setTimeout(() => {
-            entry.target.classList.add('animate');
-         }, index * 100);
-      }
-   });
-}, observerOptions);
-
-document.querySelectorAll('.fade-in, .service-tab, .testimonial')
-   .forEach(el => observer.observe(el));
-
-
-// =========================
-// Navbar Scroll Effect
-// =========================
+// ==============================
+// NAVBAR SCROLL EFFECT
+// ==============================
 window.addEventListener('scroll', () => {
    const navbar = document.querySelector('.navbar');
    if (!navbar) return;
 
-   if (window.scrollY > 50) {
-      navbar.style.borderBottomColor = 'rgba(71, 85, 105, 0.2)';
-   } else {
-      navbar.style.borderBottomColor = 'rgba(71, 85, 105, 0.1)';
-   }
-});
-
-
-// =========================
-// Testimonials Hover
-// =========================
-document.querySelectorAll('.testimonial-content').forEach(testimonial => {
-   testimonial.addEventListener('mouseenter', () => {
-      testimonial.style.transform = 'scale(1.02) translateY(-5px)';
-   });
-
-   testimonial.addEventListener('mouseleave', () => {
-      testimonial.style.transform = 'scale(1) translateY(0)';
-   });
+   navbar.style.borderBottomColor =
+      window.scrollY > 50
+         ? 'rgba(71, 85, 105, 0.2)'
+         : 'rgba(71, 85, 105, 0.1)';
 });
