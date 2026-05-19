@@ -94,13 +94,14 @@ document.addEventListener('DOMContentLoaded', () => {
       setInterval(changeText, 5000);
    }
 });
-// Services Tab Functionality
+
+// ✅ Services Tab Functionality (fixed)
 const serviceTabs = document.querySelectorAll('.service-tab');
 const serviceDetails = document.querySelectorAll('.service-details');
 
 serviceTabs.forEach(tab => {
    tab.addEventListener('click', () => {
-      const target = tab.getAttribute('data-target');
+      const target = tab.getAttribute('data-service'); // FIXED
 
       // Remove active class from all tabs and details
       serviceTabs.forEach(t => t.classList.remove('active'));
@@ -187,6 +188,7 @@ window.addEventListener('scroll', () => {
       navbar.style.borderBottomColor = 'rgba(71, 85, 105, 0.1)';
    }
 });
+
 // Enhanced Form submission
 const contactForm = document.querySelector('.contact-form');
 contactForm.addEventListener('submit', (e) => {
@@ -250,12 +252,4 @@ window.addEventListener('scroll', () => {
 // Interactive testimonials
 document.querySelectorAll('.testimonial-content').forEach(testimonial => {
    testimonial.addEventListener('mouseenter', () => {
-      testimonial.style.transform = 'scale(1.02) translateY(-5px)';
-      testimonial.style.boxShadow = '0 25px 50px rgba(71, 85, 105, 0.2)';
-   });
-
-   testimonial.addEventListener('mouseleave', () => {
-      testimonial.style.transform = 'scale(1) translateY(0)';
-      testimonial.style.boxShadow = '0 15px 35px rgba(71, 85, 105, 0.1)';
-   });
-});
+      testimonial.style.transform = 'scale(1.02) translate
