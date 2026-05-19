@@ -1,8 +1,5 @@
 // JavaScript Document
-
 // Tooplate 2149 Strategic Consulting
-
-// https://www.tooplate.com/view/2149-strategic-consulting
 
 // Mobile Menu Toggle
 const mobileMenu = document.querySelector('.mobile-menu');
@@ -28,7 +25,6 @@ function updateActiveMenu() {
 
    let current = 'home'; // Default to home
 
-   // Only update current if user has scrolled past the hero section
    if (window.scrollY > 100) {
       sections.forEach(section => {
          const sectionTop = section.offsetTop;
@@ -48,15 +44,10 @@ function updateActiveMenu() {
 
 window.addEventListener('scroll', updateActiveMenu);
 
-// Initialize with only home active on page load
 document.addEventListener('DOMContentLoaded', () => {
    const navLinks = document.querySelectorAll('.nav-links a');
    const homeLink = document.querySelector('.nav-links a[href="#home"]');
-
-   // Remove active from all links first
    navLinks.forEach(link => link.classList.remove('active'));
-
-   // Add active only to home
    if (homeLink) {
       homeLink.classList.add('active');
    }
@@ -70,8 +61,8 @@ document.addEventListener('DOMContentLoaded', () => {
    const paragraph = document.getElementById('hero-paragraph');
 
    if (headline && paragraph) {
-      // Define the 3 sets of text you want to rotate
-      const textSets = [{
+      const textSets = [
+         {
             h1: "Strategic Excellence<br>Redefined",
             p: "We architect transformative business strategies that transcend conventional thinking and deliver extraordinary results."
          },
@@ -87,32 +78,22 @@ document.addEventListener('DOMContentLoaded', () => {
 
       let currentIndex = 0;
 
-      // Function to change the text
       function changeText() {
-         // Add fade-out class
          headline.classList.add('text-fade-out');
          paragraph.classList.add('text-fade-out');
 
-         // Wait for the fade-out to finish before changing the text
          setTimeout(() => {
-            // Move to the next text set
             currentIndex = (currentIndex + 1) % textSets.length;
-
-            // Update the text
             headline.innerHTML = textSets[currentIndex].h1;
             paragraph.innerHTML = textSets[currentIndex].p;
-
-            // Remove fade-out class to trigger fade-in
             headline.classList.remove('text-fade-out');
             paragraph.classList.remove('text-fade-out');
-         }, 500); // This should match the CSS transition duration
+         }, 500);
       }
 
-      // Set the interval for text rotation (e.g., every 5 seconds)
       setInterval(changeText, 5000);
    }
 });
-
 // Services Tab Functionality
 const serviceTabs = document.querySelectorAll('.service-tab');
 const serviceDetails = document.querySelectorAll('.service-details');
@@ -199,14 +180,13 @@ window.addEventListener('scroll', () => {
    const scrolled = window.scrollY;
 
    if (scrolled > 50) {
-      navbar.style.background = '#FFFFFF'; /* Changed to solid white */
+      navbar.style.background = '#FFFFFF'; 
       navbar.style.borderBottomColor = 'rgba(71, 85, 105, 0.2)';
    } else {
-      navbar.style.background = '#FFFFFF'; /* Changed to solid white */
+      navbar.style.background = '#FFFFFF'; 
       navbar.style.borderBottomColor = 'rgba(71, 85, 105, 0.1)';
    }
 });
-
 // Enhanced Form submission
 const contactForm = document.querySelector('.contact-form');
 contactForm.addEventListener('submit', (e) => {
