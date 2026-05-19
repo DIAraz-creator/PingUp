@@ -159,149 +159,81 @@
   <link rel="stylesheet" href="tooplate-strategic-style.css">
 </head>
 <body>
-  <!-- Navigation -->
-  <nav class="navbar">
-    <div class="nav-container">
-      <a href="#home" class="logo">
-        <div class="logo-icon">💬</div>
-        <span>PingUp</span>
-      </a>
-      <ul class="nav-links">
-        <li><a href="#home">Home</a></li>
-        <li><a href="#services">Services</a></li>
-        <li><a href="#about">About</a></li>
-        <li><a href="#team">Team</a></li>
-        <li><a href="#testimonials">Reviews</a></li>
-        <li><a href="#contact">Contact</a></li>
-      </ul>
-      <div class="mobile-menu">
-        <span></span><span></span><span></span>
-      </div>
-    </div>
-  </nav>
-
-  <!-- Hero Section -->
-  <section id="home" class="hero">
-    <div class="geometric-shapes">
-      <div class="geo-shape"></div><div class="geo-shape"></div>
-      <div class="geo-shape"></div><div class="geo-shape"></div>
-      <div class="geo-shape"></div>
-    </div>
-    <div class="hero-content">
-      <h1 id="hero-headline">PingUp<br>Connect Freely, Stay Secure</h1>
-      <p id="hero-paragraph">PingUp is a secure, reliable platform for messaging, calling, and sharing — built to protect your privacy while keeping you connected worldwide.</p>
-      <a href="#services" class="cta-button">Start Connecting</a>
-    </div>
-  </section>
-
-  <!-- Services Section -->
-  <section id="services" class="services">
-    <div class="section services-container">
-      <h2 class="section-title fade-in">Our Features</h2>
-      <div class="services-layout">
-        <div class="services-content">
-          <!-- Messaging -->
-          <div class="service-details active" data-service="messaging">
-            <h3>Instant Messaging</h3>
-            <div class="service-subtitle">Fast, secure, and reliable</div>
-            <p>Send and receive messages instantly with end-to-end encryption ensuring your privacy.</p>
-            <p>Stay connected with friends, family, and colleagues through a seamless chat experience.</p>
-            <ul class="service-features">
-              <li><span class="feature-check">✓</span> Real-time delivery</li>
-              <li><span class="feature-check">✓</span> Encrypted chats</li>
-              <li><span class="feature-check">✓</span> Media sharing</li>
-              <li><span class="feature-check">✓</span> Group conversations</li>
-            </ul>
-          </div>
-          <!-- Voice Calls -->
-          <div class="service-details" data-service="voice">
-            <h3>Voice Calls</h3>
-            <div class="service-subtitle">Crystal-clear audio</div>
-            <p>Enjoy high-quality voice calls with minimal lag, no matter where you are.</p>
-            <p>Our advanced audio technology ensures every word is heard clearly.</p>
-            <ul class="service-features">
-              <li><span class="feature-check">✓</span> HD audio quality</li>
-              <li><span class="feature-check">✓</span> Low bandwidth optimization</li>
-              <li><span class="feature-check">✓</span> Secure connections</li>
-            </ul>
-          </div>
-          <!-- Video Calls -->
-          <div class="service-details" data-service="video">
-            <h3>Video Calls</h3>
-            <div class="service-subtitle">HD video conferencing</div>
-            <p>Connect face-to-face with friends and colleagues through high-definition video calls.</p>
-            <p>Stay close to loved ones with smooth, reliable video communication.</p>
-            <ul class="service-features">
-              <li><span class="feature-check">✓</span> HD video quality</li>
-              <li><span class="feature-check">✓</span> Screen sharing</li>
-              <li><span class="feature-check">✓</span> Group video calls</li>
-            </ul>
-          </div>
-          <!-- Media Sharing -->
-          <div class="service-details" data-service="media">
-            <h3>Media Sharing</h3>
-            <div class="service-subtitle">Photos, videos, and files</div>
-            <p>Share your memories and important documents instantly with friends and colleagues.</p>
-            <p>Our secure servers ensure your files remain private and protected.</p>
-            <ul class="service-features">
-              <li><span class="feature-check">✓</span> Photo & video sharing</li>
-              <li><span class="feature-check">✓</span> File attachments</li>
-              <li><span class="feature-check">✓</span> One-time view option</li>
-            </ul>
-          </div>
-          <!-- Privacy -->
-          <div class="service-details" data-service="privacy">
-            <h3>Privacy Protection</h3>
-            <div class="service-subtitle">Your data, your control</div>
-            <p>PingUp is built with privacy at its core, ensuring your conversations remain yours.</p>
-            <p>Advanced encryption and security protocols safeguard your communication.</p>
-            <ul class="service-features">
-              <li><span class="feature-check">✓</span> End-to-end encryption</li>
-              <li><span class="feature-check">✓</span> Secure servers</li>
-              <li><span class="feature-check">✓</span> Privacy-first design</li>
-            </ul>
-          </div>
+  <!-- About Section -->
+<section class="about-section" id="about">
+  <div class="about">
+    <div class="about-content">
+      <span class="highlight">Who We Are</span>
+      <h2>About Our Company</h2>
+      <p>We provide strategic consulting services to help businesses grow and succeed.</p>
+      
+      <div class="about-features">
+        <div class="feature-item">
+          <span class="feature-icon">✔</span>
+          <span class="feature-text">Expert Guidance</span>
         </div>
-        <div class="services-tabs">
-          <div class="service-tab active" data-target="messaging">
-            <div class="tab-icon">💬</div>
-            <div class="tab-content">
-              <h4>Messaging</h4>
-              <p>Secure and instant communication</p>
-            </div>
-          </div>
-          <div class="service-tab" data-target="voice">
-            <div class="tab-icon">📞</div>
-            <div class="tab-content">
-              <h4>Voice Calls</h4>
-              <p>Crystal-clear audio quality</p>
-            </div>
-          </div>
-          <div class="service-tab" data-target="video">
-            <div class="tab-icon">📹</div>
-            <div class="tab-content">
-              <h4>Video Calls</h4>
-              <p>HD video conferencing</p>
-            </div>
-          </div>
-          <div class="service-tab" data-target="media">
-            <div class="tab-icon">📂</div>
-            <div class="tab-content">
-              <h4>Media Sharing</h4>
-              <p>Photos, videos, and files</p>
-            </div>
-          </div>
-          <div class="service-tab" data-target="privacy">
-            <div class="tab-icon">🔒</div>
-            <div class="tab-content">
-              <h4>Privacy</h4>
-              <p>Advanced security & encryption</p>
-            </div>
-          </div>
+        <div class="feature-item">
+          <span class="feature-icon">✔</span>
+          <span class="feature-text">Tailored Solutions</span>
         </div>
       </div>
     </div>
-  </section>
+
+    <div class="about-visual">
+      <div class="about-image">
+        <img src="images/about.jpg" alt="About Us">
+      </div>
+      <div class="visual-shapes">
+        <div class="visual-shape"></div>
+        <div class="visual-shape"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="stats">
+    <div class="stat">
+      <div class="stat-number" data-count="250">0</div>
+      <div class="stat-label">Projects Completed</div>
+    </div>
+    <div class="stat">
+      <div class="stat-number" data-count="100">0</div>
+      <div class="stat-label">Happy Clients</div>
+    </div>
+  </div>
+</section>
+
+<!-- Team Section -->
+<section class="team" id="team">
+  <h2 class="section-title">Meet Our Team</h2>
+  <div class="team-grid">
+    <div class="team-member">
+      <div class="member-card">
+        <div class="member-avatar">
+          <img src="images/team1.jpg" alt="Team Member">
+        </div>
+        <div class="member-info">
+          <h3>John Doe</h3>
+          <span class="member-role">CEO</span>
+          <p>John brings 15 years of leadership experience in consulting and strategy.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="team-member">
+      <div class="member-card">
+        <div class="member-avatar">
+          <img src="images/team2.jpg" alt="Team Member">
+        </div>
+        <div class="member-info">
+          <h3>Jane Smith</h3>
+          <span class="member-role">Project Manager</span>
+          <p>Jane specializes in managing complex projects with precision and care.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
   <!-- Reviews Section -->
   <section id="testimonials" class="testimonials">
     <div class="section">
