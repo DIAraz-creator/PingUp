@@ -48,15 +48,65 @@
       <h2 class="section-title fade-in">Our Features</h2>
       <div class="services-layout">
         <div class="services-content">
-          <!-- Example service details -->
+          <!-- Messaging -->
           <div class="service-details active" data-service="messaging">
             <h3>Instant Messaging</h3>
             <div class="service-subtitle">Fast, secure, and reliable</div>
             <p>Send and receive messages instantly with end-to-end encryption ensuring your privacy.</p>
+            <p>Stay connected with friends, family, and colleagues through a seamless chat experience.</p>
             <ul class="service-features">
               <li><span class="feature-check">✓</span> Real-time delivery</li>
               <li><span class="feature-check">✓</span> Encrypted chats</li>
               <li><span class="feature-check">✓</span> Media sharing</li>
+              <li><span class="feature-check">✓</span> Group conversations</li>
+            </ul>
+          </div>
+          <!-- Voice Calls -->
+          <div class="service-details" data-service="voice">
+            <h3>Voice Calls</h3>
+            <div class="service-subtitle">Crystal-clear audio</div>
+            <p>Enjoy high-quality voice calls with minimal lag, no matter where you are.</p>
+            <p>Our advanced audio technology ensures every word is heard clearly.</p>
+            <ul class="service-features">
+              <li><span class="feature-check">✓</span> HD audio quality</li>
+              <li><span class="feature-check">✓</span> Low bandwidth optimization</li>
+              <li><span class="feature-check">✓</span> Secure connections</li>
+            </ul>
+          </div>
+          <!-- Video Calls -->
+          <div class="service-details" data-service="video">
+            <h3>Video Calls</h3>
+            <div class="service-subtitle">HD video conferencing</div>
+            <p>Connect face-to-face with friends and colleagues through high-definition video calls.</p>
+            <p>Stay close to loved ones with smooth, reliable video communication.</p>
+            <ul class="service-features">
+              <li><span class="feature-check">✓</span> HD video quality</li>
+              <li><span class="feature-check">✓</span> Screen sharing</li>
+              <li><span class="feature-check">✓</span> Group video calls</li>
+            </ul>
+          </div>
+          <!-- Media Sharing -->
+          <div class="service-details" data-service="media">
+            <h3>Media Sharing</h3>
+            <div class="service-subtitle">Photos, videos, and files</div>
+            <p>Share your memories and important documents instantly with friends and colleagues.</p>
+            <p>Our secure servers ensure your files remain private and protected.</p>
+            <ul class="service-features">
+              <li><span class="feature-check">✓</span> Photo & video sharing</li>
+              <li><span class="feature-check">✓</span> File attachments</li>
+              <li><span class="feature-check">✓</span> One-time view option</li>
+            </ul>
+          </div>
+          <!-- Privacy -->
+          <div class="service-details" data-service="privacy">
+            <h3>Privacy Protection</h3>
+            <div class="service-subtitle">Your data, your control</div>
+            <p>PingUp is built with privacy at its core, ensuring your conversations remain yours.</p>
+            <p>Advanced encryption and security protocols safeguard your communication.</p>
+            <ul class="service-features">
+              <li><span class="feature-check">✓</span> End-to-end encryption</li>
+              <li><span class="feature-check">✓</span> Secure servers</li>
+              <li><span class="feature-check">✓</span> Privacy-first design</li>
             </ul>
           </div>
         </div>
@@ -68,145 +118,227 @@
               <p>Secure and instant communication</p>
             </div>
           </div>
-          <div class="service-tab" data-target="calling">
+          <div class="service-tab" data-target="voice">
             <div class="tab-icon">📞</div>
             <div class="tab-content">
-              <h4>Voice & Video Calls</h4>
-              <p>Crystal-clear audio and HD video</p>
+              <h4>Voice Calls</h4>
+              <p>Crystal-clear audio quality</p>
+            </div>
+          </div>
+          <div class="service-tab" data-target="video">
+            <div class="tab-icon">📹</div>
+            <div class="tab-content">
+              <h4>Video Calls</h4>
+              <p>HD video conferencing</p>
+            </div>
+          </div>
+          <div class="service-tab" data-target="media">
+            <div class="tab-icon">📂</div>
+            <div class="tab-content">
+              <h4>Media Sharing</h4>
+              <p>Photos, videos, and files</p>
+            </div>
+          </div>
+          <div class="service-tab" data-target="privacy">
+            <div class="tab-icon">🔒</div>
+            <div class="tab-content">
+              <h4>Privacy</h4>
+              <p>Advanced security & encryption</p>
             </div>
           </div>
         </div>
       </div>
+    </div>
+  </section>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PingUp - Secure & Reliable Communication</title>
+  <link rel="stylesheet" href="tooplate-strategic-style.css">
+</head>
+<body>
+  <!-- Navigation -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="#home" class="logo">
+        <div class="logo-icon">💬</div>
+        <span>PingUp</span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#team">Team</a></li>
+        <li><a href="#testimonials">Reviews</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+      <div class="mobile-menu">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section id="home" class="hero">
+    <div class="geometric-shapes">
+      <div class="geo-shape"></div><div class="geo-shape"></div>
+      <div class="geo-shape"></div><div class="geo-shape"></div>
+      <div class="geo-shape"></div>
+    </div>
+    <div class="hero-content">
+      <h1 id="hero-headline">PingUp<br>Connect Freely, Stay Secure</h1>
+      <p id="hero-paragraph">PingUp is a secure, reliable platform for messaging, calling, and sharing — built to protect your privacy while keeping you connected worldwide.</p>
+      <a href="#services" class="cta-button">Start Connecting</a>
     </div>
   </section>
 
-  <!-- About Section -->
-  <section id="about" class="about-section">
-    <div class="section about fade-in">
-      <div class="about-content">
-        <div class="highlight">Founder</div>
-        <h2>Mr. SHERAZ — CEO (Chief Executive Officer)</h2>
-        <p>
-          As the CEO of PingUp, Mr. Sheraz is dedicated to creating secure and reliable digital platforms 
-          that empower people to connect without boundaries. His vision is to build apps and websites 
-          that prioritize privacy, trust, and innovation — ensuring users enjoy seamless communication 
-          while staying protected online.
-        </p>
-        <div class="about-features">
-          <div class="feature-item"><div class="feature-icon">🔒</div><div class="feature-text">Privacy First</div></div>
-          <div class="feature-item"><div class="feature-icon">⚡</div><div class="feature-text">Reliable Performance</div></div>
-          <div class="feature-item"><div class="feature-icon">🌍</div><div class="feature-text">Global Connectivity</div></div>
-          <div class="feature-item"><div class="feature-icon">💡</div><div class="feature-text">Innovation Driven</div></div>
+  <!-- Services Section -->
+  <section id="services" class="services">
+    <div class="section services-container">
+      <h2 class="section-title fade-in">Our Features</h2>
+      <div class="services-layout">
+        <div class="services-content">
+          <!-- Messaging -->
+          <div class="service-details active" data-service="messaging">
+            <h3>Instant Messaging</h3>
+            <div class="service-subtitle">Fast, secure, and reliable</div>
+            <p>Send and receive messages instantly with end-to-end encryption ensuring your privacy.</p>
+            <p>Stay connected with friends, family, and colleagues through a seamless chat experience.</p>
+            <ul class="service-features">
+              <li><span class="feature-check">✓</span> Real-time delivery</li>
+              <li><span class="feature-check">✓</span> Encrypted chats</li>
+              <li><span class="feature-check">✓</span> Media sharing</li>
+              <li><span class="feature-check">✓</span> Group conversations</li>
+            </ul>
+          </div>
+          <!-- Voice Calls -->
+          <div class="service-details" data-service="voice">
+            <h3>Voice Calls</h3>
+            <div class="service-subtitle">Crystal-clear audio</div>
+            <p>Enjoy high-quality voice calls with minimal lag, no matter where you are.</p>
+            <p>Our advanced audio technology ensures every word is heard clearly.</p>
+            <ul class="service-features">
+              <li><span class="feature-check">✓</span> HD audio quality</li>
+              <li><span class="feature-check">✓</span> Low bandwidth optimization</li>
+              <li><span class="feature-check">✓</span> Secure connections</li>
+            </ul>
+          </div>
+          <!-- Video Calls -->
+          <div class="service-details" data-service="video">
+            <h3>Video Calls</h3>
+            <div class="service-subtitle">HD video conferencing</div>
+            <p>Connect face-to-face with friends and colleagues through high-definition video calls.</p>
+            <p>Stay close to loved ones with smooth, reliable video communication.</p>
+            <ul class="service-features">
+              <li><span class="feature-check">✓</span> HD video quality</li>
+              <li><span class="feature-check">✓</span> Screen sharing</li>
+              <li><span class="feature-check">✓</span> Group video calls</li>
+            </ul>
+          </div>
+          <!-- Media Sharing -->
+          <div class="service-details" data-service="media">
+            <h3>Media Sharing</h3>
+            <div class="service-subtitle">Photos, videos, and files</div>
+            <p>Share your memories and important documents instantly with friends and colleagues.</p>
+            <p>Our secure servers ensure your files remain private and protected.</p>
+            <ul class="service-features">
+              <li><span class="feature-check">✓</span> Photo & video sharing</li>
+              <li><span class="feature-check">✓</span> File attachments</li>
+              <li><span class="feature-check">✓</span> One-time view option</li>
+            </ul>
+          </div>
+          <!-- Privacy -->
+          <div class="service-details" data-service="privacy">
+            <h3>Privacy Protection</h3>
+            <div class="service-subtitle">Your data, your control</div>
+            <p>PingUp is built with privacy at its core, ensuring your conversations remain yours.</p>
+            <p>Advanced encryption and security protocols safeguard your communication.</p>
+            <ul class="service-features">
+              <li><span class="feature-check">✓</span> End-to-end encryption</li>
+              <li><span class="feature-check">✓</span> Secure servers</li>
+              <li><span class="feature-check">✓</span> Privacy-first design</li>
+            </ul>
+          </div>
         </div>
-      </div>
-      <div class="about-visual">
-        <div class="about-image">
-          <div class="visual-shapes">
-            <div class="visual-shape"></div>
-            <div class="visual-shape"></div>
-            <div class="visual-shape"></div>
+        <div class="services-tabs">
+          <div class="service-tab active" data-target="messaging">
+            <div class="tab-icon">💬</div>
+            <div class="tab-content">
+              <h4>Messaging</h4>
+              <p>Secure and instant communication</p>
+            </div>
           </div>
-          <img src="images/about-image-01.jpg" alt="Founder Mr. Sheraz">
-        </div>
-        <div class="stats">
-          <div class="stat">
-            <span class="stat-number counter" data-count="100">0</span>
-            <span class="stat-label">Secure Platforms Built</span>
+          <div class="service-tab" data-target="voice">
+            <div class="tab-icon">📞</div>
+            <div class="tab-content">
+              <h4>Voice Calls</h4>
+              <p>Crystal-clear audio quality</p>
+            </div>
           </div>
-          <div class="stat">
-            <span class="stat-number counter" data-count="95">0</span>
-            <span class="stat-label">Reliability Score</span>
+          <div class="service-tab" data-target="video">
+            <div class="tab-icon">📹</div>
+            <div class="tab-content">
+              <h4>Video Calls</h4>
+              <p>HD video conferencing</p>
+            </div>
           </div>
-          <div class="stat">
-            <span class="stat-number counter" data-count="50">0</span>
-            <span class="stat-label">Global Clients</span>
+          <div class="service-tab" data-target="media">
+            <div class="tab-icon">📂</div>
+            <div class="tab-content">
+              <h4>Media Sharing</h4>
+              <p>Photos, videos, and files</p>
+            </div>
+          </div>
+          <div class="service-tab" data-target="privacy">
+            <div class="tab-icon">🔒</div>
+            <div class="tab-content">
+              <h4>Privacy</h4>
+              <p>Advanced security & encryption</p>
+            </div>
           </div>
         </div>
       </div>
     </div>
   </section>
-  <!-- Team Section -->
-  <section id="team" class="team">
-    <div class="section">
-      <h2 class="section-title fade-in">PingUp Team</h2>
-      <div class="team-grid">
-        <div class="team-member fade-in">
-          <div class="member-card">
-            <div class="member-avatar">
-              <img src="images/team-member-01.jpg" alt="Founder" />
-            </div>
-            <div class="member-info">
-              <h3>Mr. SHERAZ</h3>
-              <div class="member-role">CEO - Chief Executive Officer</div>
-              <p>Founder and visionary behind PingUp, dedicated to building secure and reliable platforms that empower people to connect freely while protecting their privacy.</p>
-            </div>
-          </div>
-        </div>
-        <div class="team-member fade-in">
-          <div class="member-card">
-            <div class="member-avatar">
-              <img src="images/team-member-02.jpg" alt="Developer" />
-            </div>
-            <div class="member-info">
-              <h3>PingUp Developers</h3>
-              <div class="member-role">Engineering Excellence</div>
-              <p>Ensuring PingUp runs smoothly with ultra-fast messaging, crystal-clear calls, and secure media sharing for millions of users worldwide.</p>
-            </div>
-          </div>
-        </div>
-        <div class="team-member fade-in">
-          <div class="member-card">
-            <div class="member-avatar">
-              <img src="images/team-member-03.jpg" alt="Designer" />
-            </div>
-            <div class="member-info">
-              <h3>PingUp Designers</h3>
-              <div class="member-role">User Experience</div>
-              <p>Crafting a modern, intuitive interface that makes communication effortless and enjoyable for everyone.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
   <!-- Reviews Section -->
   <section id="testimonials" class="testimonials">
     <div class="section">
-      <h2 class="section-title fade-in">User Reviews</h2>
+      <h2 class="section-title fade-in">Leadership Reviews</h2>
       <div class="testimonials-container">
         <div class="testimonial fade-in">
           <div class="testimonial-content">
-            <p class="testimonial-text">“PingUp has completely changed how I connect with my friends. Messaging is instant and calls are crystal clear!”</p>
+            <p class="testimonial-text">“PingUp is redefining secure communication. The vision and leadership behind this platform are truly inspiring.”</p>
             <div class="testimonial-author">
-              <div class="author-avatar">AM</div>
+              <div class="author-avatar">CF</div>
               <div class="author-info">
-                <h4>Ayesha Malik</h4>
-                <span>PingUp User</span>
+                <h4>Ali Khan</h4>
+                <span>Co-Founder</span>
               </div>
             </div>
           </div>
         </div>
         <div class="testimonial fade-in">
           <div class="testimonial-content">
-            <p class="testimonial-text">“The video quality is amazing. Even on slow internet, PingUp keeps my calls smooth and stable.”</p>
+            <p class="testimonial-text">“Managing PingUp has been a rewarding journey. The team’s dedication to privacy and reliability sets us apart.”</p>
             <div class="testimonial-author">
-              <div class="author-avatar">HS</div>
+              <div class="author-avatar">MG</div>
               <div class="author-info">
-                <h4>Hamza Shah</h4>
-                <span>PingUp User</span>
+                <h4>Sara Ahmed</h4>
+                <span>Manager</span>
               </div>
             </div>
           </div>
         </div>
         <div class="testimonial fade-in">
           <div class="testimonial-content">
-            <p class="testimonial-text">“I love the privacy features. Knowing my chats and calls are encrypted gives me peace of mind.”</p>
+            <p class="testimonial-text">“PingUp’s secure ecosystem is a benchmark for modern communication platforms. It’s a privilege to be part of this journey.”</p>
             <div class="testimonial-author">
-              <div class="author-avatar">RK</div>
+              <div class="author-avatar">EX</div>
               <div class="author-info">
-                <h4>Rida Khan</h4>
-                <span>PingUp User</span>
+                <h4>Dr. Imran Malik</h4>
+                <span>Senior Executive</span>
               </div>
             </div>
           </div>
