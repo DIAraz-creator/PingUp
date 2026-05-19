@@ -551,6 +551,7 @@ body {
   font-size: 1rem;
 }
 
+/* About Features Grid */
 .about-features {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
