@@ -1,375 +1,222 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PingUp</title>
-    <link rel="stylesheet" href="tooplate-strategic-style.css">
-<!--
+// PingUp JavaScript File
 
-Tooplate 2149 Strategic Consulting
+// Mobile Menu Toggle
+const mobileMenu = document.querySelector('.mobile-menu');
+const navLinks = document.querySelector('.nav-links');
 
-https://www.tooplate.com/view/2149-strategic-consulting
+mobileMenu.addEventListener('click', () => {
+  navLinks.classList.toggle('active');
+  const spans = mobileMenu.querySelectorAll('span');
+  spans.forEach((span, index) => {
+    span.style.transform = navLinks.classList.contains('active')
+      ? (index === 0 ? 'rotate(45deg) translate(5px, 5px)' :
+         index === 1 ? 'opacity(0)' :
+         'rotate(-45deg) translate(7px, -6px)')
+      : 'none';
+  });
+});
 
-Free HTML CSS Template
+// Active Menu Highlight
+function updateActiveMenu() {
+  const sections = document.querySelectorAll('section[id]');
+  const navLinksAll = document.querySelectorAll('.nav-links a');
+  let current = 'home';
+  if (window.scrollY > 100) {
+    sections.forEach(section => {
+      const sectionTop = section.offsetTop;
+      if (scrollY >= sectionTop - 200) {
+        current = section.getAttribute('id');
+      }
+    });
+  }
+  navLinksAll.forEach(link => {
+    link.classList.remove('active');
+    if (link.getAttribute('href').substring(1) === current) {
+      link.classList.add('active');
+    }
+  });
+}
+window.addEventListener('scroll', updateActiveMenu);
 
--->
-</head>
-<body>
-    <!-- Navigation -->
-    <nav class="navbar">
-        <div class="nav-container">
-            <a href="#home" class="logo">
-                <div class="logo-icon">◆</div>
-                <span>StrategicPro</span>
-            </a>
-            <ul class="nav-links">
-                <li><a href="#home">Home</a></li>
-                <li><a href="#services">Services</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#team">Team</a></li>
-                <li><a href="#testimonials">Testimonials</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-            <div class="mobile-menu">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
-        </div>
-    </nav>
+// Hero Text Rotation (PingUp slogans)
+document.addEventListener('DOMContentLoaded', () => {
+  const headline = document.getElementById('hero-headline');
+  const paragraph = document.getElementById('hero-paragraph');
+  if (headline && paragraph) {
+    const textSets = [
+      {
+        h1: "Connect Beyond Limits",
+        p: "Lightning-fast messaging, crystal-clear calls, and ultra-HD video — all in one app."
+      },
+      {
+        h1: "Your Privacy, Your Power",
+        p: "PingUp protects every chat, call, and file with advanced end-to-end encryption."
+      },
+      {
+        h1: "One Platform. Endless Connections.",
+        p: "From friends to teams, PingUp makes communication instant, secure, and global."
+      }
+    ];
+    let currentIndex = 0;
+    function changeText() {
+      headline.classList.add('text-fade-out');
+      paragraph.classList.add('text-fade-out');
+      setTimeout(() => {
+        currentIndex = (currentIndex + 1) % textSets.length;
+        headline.innerHTML = textSets[currentIndex].h1;
+        paragraph.innerHTML = textSets[currentIndex].p;
+        headline.classList.remove('text-fade-out');
+        paragraph.classList.remove('text-fade-out');
+      }, 500);
+    }
+    setInterval(changeText, 5000);
+  }
+});
 
-            <!-- Hero Section -->
-    <section id="home" class="hero">
-        <div class="geometric-shapes">
-            <div class="geo-shape"></div>
-            <div class="geo-shape"></div>
-            <div class="geo-shape"></div>
-            <div class="geo-shape"></div>
-            <div class="geo-shape"></div>
-        </div>
-        <div class="hero-content">
-            <h1 id="hero-headline">Strategic Excellence<br>Redefined</h1>
-            <p id="hero-paragraph">We architect transformative business strategies that transcend conventional thinking and deliver extraordinary results through innovative methodologies.</p>
-            <a href="#services" class="cta-button">Begin Your Journey</a>
-        </div>
-    </section>
+// Services Tabs
+const serviceTabs = document.querySelectorAll('.service-tab');
+const serviceDetails = document.querySelectorAll('.service-details');
+serviceTabs.forEach(tab => {
+  tab.addEventListener('click', () => {
+    const target = tab.getAttribute('data-target');
+    serviceTabs.forEach(t => t.classList.remove('active'));
+    serviceDetails.forEach(d => d.classList.remove('active'));
+    tab.classList.add('active');
+    document.querySelector(`.service-details[data-service="${target}"]`).classList.add('active');
+  });
+});
 
-    <!-- Services Section -->
-    <section id="services" class="services">
-        <div class="section services-container">
-            <h2 class="section-title fade-in">Our Strategic Arsenal</h2>
-            <div class="services-layout">
-                <div class="services-content">
-                    <div class="service-details active" data-service="strategy">
-                        <h3>Strategic Architecture</h3>
-                        <div class="service-subtitle">Comprehensive Business Framework Design</div>
-                        <p>We design comprehensive business frameworks that integrate market dynamics, competitive intelligence, and organizational capabilities to create sustainable competitive advantages.</p>
-                        <p>Our strategic architecture approach combines deep industry expertise with cutting-edge analytical tools to develop roadmaps that drive exceptional business performance.</p>
-                        <ul class="service-features">
-                            <li><span class="feature-check">✓</span> Market Analysis & Competitive Intelligence</li>
-                            <li><span class="feature-check">✓</span> Strategic Roadmap Development</li>
-                            <li><span class="feature-check">✓</span> Performance Metrics & KPI Framework</li>
-                            <li><span class="feature-check">✓</span> Risk Assessment & Mitigation Planning</li>
-                        </ul>
-                    </div>
-                    <div class="service-details" data-service="digital">
-                        <h3>Digital Metamorphosis</h3>
-                        <div class="service-subtitle">Advanced Digital Ecosystem Transformation</div>
-                        <p>Transform your organization through advanced digital ecosystems that leverage emerging technologies to revolutionize customer experiences and operational efficiency.</p>
-                        <p>We architect comprehensive digital transformations that seamlessly integrate AI, automation, and cloud technologies to create competitive advantages.</p>
-                        <ul class="service-features">
-                            <li><span class="feature-check">✓</span> AI & Automation Implementation</li>
-                            <li><span class="feature-check">✓</span> Cloud Architecture & Migration</li>
-                            <li><span class="feature-check">✓</span> Customer Experience Optimization</li>
-                            <li><span class="feature-check">✓</span> Digital Workforce Development</li>
-                        </ul>
-                    </div>
-                    <div class="service-details" data-service="performance">
-                        <h3>Performance Engineering</h3>
-                        <div class="service-subtitle">Data-Driven Optimization Excellence</div>
-                        <p>Optimize organizational performance through data-driven methodologies and advanced analytics that identify breakthrough opportunities and eliminate operational inefficiencies.</p>
-                        <p>Our performance engineering approach utilizes predictive analytics and machine learning to unlock hidden potential across all business functions.</p>
-                        <ul class="service-features">
-                            <li><span class="feature-check">✓</span> Advanced Analytics & Business Intelligence</li>
-                            <li><span class="feature-check">✓</span> Process Optimization & Automation</li>
-                            <li><span class="feature-check">✓</span> Predictive Modeling & Forecasting</li>
-                            <li><span class="feature-check">✓</span> Cost Reduction & Efficiency Gains</li>
-                        </ul>
-                    </div>
-                    <div class="service-details" data-service="market">
-                        <h3>Market Intelligence</h3>
-                        <div class="service-subtitle">Advanced Market Research & Consumer Insights</div>
-                        <p>Decode complex market signals and consumer behaviors using proprietary research frameworks that reveal hidden opportunities and emerging industry disruptions.</p>
-                        <p>We provide deep market insights through advanced research methodologies, competitive analysis, and trend identification to inform strategic decision-making.</p>
-                        <ul class="service-features">
-                            <li><span class="feature-check">✓</span> Consumer Behavior Analysis</li>
-                            <li><span class="feature-check">✓</span> Market Trend Identification</li>
-                            <li><span class="feature-check">✓</span> Competitive Landscape Mapping</li>
-                            <li><span class="feature-check">✓</span> Opportunity Assessment & Validation</li>
-                        </ul>
-                    </div>
-                    <div class="service-details" data-service="innovation">
-                        <h3>Innovation Catalyst</h3>
-                        <div class="service-subtitle">Breakthrough Innovation Acceleration</div>
-                        <p>Accelerate breakthrough innovation through systematic creativity processes and emerging technology integration that positions your organization at the industry forefront.</p>
-                        <p>Our innovation catalyst methodology combines design thinking, rapid prototyping, and technology scouting to create revolutionary products and services.</p>
-                        <ul class="service-features">
-                            <li><span class="feature-check">✓</span> Innovation Strategy & Roadmapping</li>
-                            <li><span class="feature-check">✓</span> Design Thinking Workshops</li>
-                            <li><span class="feature-check">✓</span> Rapid Prototyping & Testing</li>
-                            <li><span class="feature-check">✓</span> Technology Scouting & Integration</li>
-                        </ul>
-                    </div>
-                    <div class="service-details" data-service="transformation">
-                        <h3>Transformation Orchestration</h3>
-                        <div class="service-subtitle">Comprehensive Change Management Excellence</div>
-                        <p>Navigate complex organizational change with precision-engineered methodologies that ensure seamless transitions and sustained cultural transformation.</p>
-                        <p>We orchestrate enterprise-wide transformations through proven change management frameworks that maximize adoption and minimize disruption.</p>
-                        <ul class="service-features">
-                            <li><span class="feature-check">✓</span> Change Management Strategy</li>
-                            <li><span class="feature-check">✓</span> Cultural Transformation Programs</li>
-                            <li><span class="feature-check">✓</span> Leadership Development & Training</li>
-                            <li><span class="feature-check">✓</span> Implementation & Success Metrics</li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="services-tabs">
-                    <div class="service-tab active" data-target="strategy">
-                        <div class="tab-icon">🎯</div>
-                        <div class="tab-content">
-                            <h4>Strategic Architecture</h4>
-                            <p>Comprehensive business frameworks and competitive strategies</p>
-                        </div>
-                    </div>
-                    <div class="service-tab" data-target="digital">
-                        <div class="tab-icon">⚡</div>
-                        <div class="tab-content">
-                            <h4>Digital Metamorphosis</h4>
-                            <p>Advanced digital ecosystems and technology integration</p>
-                        </div>
-                    </div>
-                    <div class="service-tab" data-target="performance">
-                        <div class="tab-icon">📊</div>
-                        <div class="tab-content">
-                            <h4>Performance Engineering</h4>
-                            <p>Data-driven optimization and analytics excellence</p>
-                        </div>
-                    </div>
-                    <div class="service-tab" data-target="market">
-                        <div class="tab-icon">🔬</div>
-                        <div class="tab-content">
-                            <h4>Market Intelligence</h4>
-                            <p>Advanced research and consumer insights</p>
-                        </div>
-                    </div>
-                    <div class="service-tab" data-target="innovation">
-                        <div class="tab-icon">🚀</div>
-                        <div class="tab-content">
-                            <h4>Innovation Catalyst</h4>
-                            <p>Breakthrough innovation and technology scouting</p>
-                        </div>
-                    </div>
-                    <div class="service-tab" data-target="transformation">
-                        <div class="tab-icon">🌊</div>
-                        <div class="tab-content">
-                            <h4>Transformation Orchestration</h4>
-                            <p>Comprehensive change management and cultural transformation</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+// Smooth Scrolling
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+  anchor.addEventListener('click', function (e) {
+    e.preventDefault();
+    const target = document.querySelector(this.getAttribute('href'));
+    if (target) {
+      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+    navLinks.classList.remove('active');
+  });
+});
+// Scroll Animations
+const observerOptions = {
+  threshold: 0.15,
+  rootMargin: '0px 0px -100px 0px'
+};
 
-    <!-- About Section -->
-    <section id="about" class="about-section">
-        <div class="section about fade-in">
-            <div class="about-content">
-                <div class="highlight">Excellence Through Innovation</div>
-                <h2>Two Decades of Strategic Mastery</h2>
-                <p>We are pioneering consultants who have redefined strategic thinking across global enterprises. Our innovative methodologies have transformed Fortune 500 companies and emerging unicorns alike.</p>
-                
-                <div class="about-features">
-                    <div class="feature-item">
-                        <div class="feature-icon">🎯</div>
-                        <div class="feature-text">Strategic Planning Excellence</div>
-                    </div>
-                    <div class="feature-item">
-                        <div class="feature-icon">📊</div>
-                        <div class="feature-text">Data-Driven Insights</div>
-                    </div>
-                    <div class="feature-item">
-                        <div class="feature-icon">⚡</div>
-                        <div class="feature-text">Rapid Implementation</div>
-                    </div>
-                    <div class="feature-item">
-                        <div class="feature-icon">🚀</div>
-                        <div class="feature-text">Innovation Leadership</div>
-                    </div>
-                </div>
-                
-                <p>From initial strategy conception to full-scale implementation, we orchestrate comprehensive transformations that deliver measurable impact and sustainable competitive advantage.</p>
-                
-                <p>Keep productivity high with <a href="https://timermo.com" rel="nofollow" target="_blank">TimerMo</a> timer tools. Access unlimited vector sticker designs at <a href="https://www.vectorsticker.com" rel="nofollow" target="_blank">VectorSticker</a>.</p>
-            </div>
-            <div class="about-visual">
-                <div class="about-image">
-                    <div class="visual-shapes">
-                        <div class="visual-shape"></div>
-                        <div class="visual-shape"></div>
-                        <div class="visual-shape"></div>
-                    </div>
-                    <img src="images/about-image-01.jpg" alt="Strategic Excellence">
-                </div>
-                
-                <div class="stats">
-                    <div class="stat">
-                        <span class="stat-number counter" data-count="200">0</span>
-                        <span class="stat-label">Strategic Transformations</span>
-                    </div>
-                    <div class="stat">
-                        <span class="stat-number counter" data-count="98">0</span>
-                        <span class="stat-label">Success Rate</span>
-                    </div>
-                    <div class="stat">
-                        <span class="stat-number counter" data-count="35">0</span>
-                        <span class="stat-label">Industry Awards</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach((entry, index) => {
+    if (entry.isIntersecting) {
+      setTimeout(() => {
+        entry.target.classList.add('animate');
+        // Counter animation
+        if (entry.target.classList.contains('counter')) {
+          animateCounter(entry.target);
+        }
+      }, index * 100); // stagger animations
+    }
+  });
+}, observerOptions);
 
-    <!-- Team Section -->
-    <section id="team" class="team">
-        <div class="section">
-            <h2 class="section-title fade-in">Strategic Visionaries</h2>
-            <div class="team-grid">
-                <div class="team-member fade-in">
-                    <div class="member-card">
-                        <div class="member-avatar">
-                            <img src="images/team-member-01.jpg" alt="Michael Thompson" />
-                        </div>
-                        <div class="member-info">
-                            <h3>Michael Thompson</h3>
-                            <div class="member-role">Chief Strategic Officer</div>
-                            <p>Visionary leader with 25+ years architecting transformations for Fortune 100 companies, specializing in digital innovation and organizational renaissance.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="team-member fade-in">
-                    <div class="member-card">
-                        <div class="member-avatar">
-                            <img src="images/team-member-02.jpg" alt="Sarah Chen" />
-                        </div>
-                        <div class="member-info">
-                            <h3>Sarah Chen</h3>
-                            <div class="member-role">Strategy Director</div>
-                            <p>Former McKinsey principal with deep expertise in market expansion strategies, competitive intelligence, and breakthrough innovation across technology and life sciences.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="team-member fade-in">
-                    <div class="member-card">
-                        <div class="member-avatar">
-                            <img src="images/team-member-03.jpg" alt="David Rodriguez" />
-                        </div>
-                        <div class="member-info">
-                            <h3>David Rodriguez</h3>
-                            <div class="member-role">Innovation Architect</div>
-                            <p>Technology futurist and innovation catalyst with extensive experience in AI, blockchain, and emerging technologies that reshape business paradigms.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+// Observe all animated elements
+document.querySelectorAll('.fade-in, .service-tab, .team-member, .testimonial, .counter').forEach(el => {
+  observer.observe(el);
+});
 
-    <!-- Testimonials Section -->
-    <section id="testimonials" class="testimonials">
-        <div class="section">
-            <h2 class="section-title fade-in">Client Transformations</h2>
-            <div class="testimonials-container">
-                <div class="testimonial fade-in">
-                    <div class="testimonial-content">
-                        <p class="testimonial-text">StrategicPro didn't just transform our business model—they revolutionized our entire industry perspective. Their strategic insights generated 200% revenue growth within 24 months.</p>
-                        <div class="testimonial-author">
-                            <div class="author-avatar">JM</div>
-                            <div class="author-info">
-                                <h4>James Mitchell</h4>
-                                <span>CEO, TechCorp Global</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="testimonial fade-in">
-                    <div class="testimonial-content">
-                        <p class="testimonial-text">Their digital transformation methodology was extraordinary. We achieved operational excellence while reducing costs by 40% and accelerating time-to-market significantly.</p>
-                        <div class="testimonial-author">
-                            <div class="author-avatar">LW</div>
-                            <div class="author-info">
-                                <h4>Lisa Wang</h4>
-                                <span>COO, Innovation Dynamics</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="testimonial fade-in">
-                    <div class="testimonial-content">
-                        <p class="testimonial-text">Working with StrategicPro was transformational. Their market intelligence and strategic planning enabled our successful expansion into five new international markets.</p>
-                        <div class="testimonial-author">
-                            <div class="author-avatar">RJ</div>
-                            <div class="author-info">
-                                <h4>Robert Johnson</h4>
-                                <span>Founder, Global Ventures</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+// Counter Animation
+function animateCounter(element) {
+  if (element.classList.contains('animated')) return;
+  element.classList.add('animated');
+  const target = parseInt(element.getAttribute('data-count'));
+  const increment = target / 80;
+  let current = 0;
+  const timer = setInterval(() => {
+    current += increment;
+    const value = Math.floor(current);
+    element.textContent = target > 100 ? value : value + '%';
+    if (current >= target) {
+      element.textContent = target > 100 ? target : target + '%';
+      clearInterval(timer);
+    }
+  }, 25);
+}
 
-    <!-- Contact Section -->
-    <section id="contact" class="contact">
-        <div class="section">
-            <h2 class="section-title fade-in">Initiate Your Transformation</h2>
-            <div class="contact-content">
-                <p>Ready to transcend conventional business boundaries? Let's architect your strategic future together.</p>
-                <form class="contact-form fade-in">
-                    <div class="form-group">
-                        <input type="text" placeholder="First Name" required>
-                        <input type="text" placeholder="Last Name" required>
-                    </div>
-                    <div class="form-group">
-                        <input type="email" placeholder="Email Address" required>
-                        <input type="tel" placeholder="Phone Number">
-                    </div>
-                    <input type="text" placeholder="Organization Name">
-                    <textarea placeholder="Describe your strategic vision and transformation goals..." required></textarea>
-                    <button type="submit" class="submit-btn">Launch Strategic Partnership</button>
-                </form>
-            </div>
-        </div>
-    </section>
+// Navbar scroll effect
+window.addEventListener('scroll', () => {
+  const navbar = document.querySelector('.navbar');
+  const scrolled = window.scrollY;
+  if (scrolled > 50) {
+    navbar.style.background = '#FFFFFF';
+    navbar.style.borderBottomColor = 'rgba(71, 85, 105, 0.2)';
+  } else {
+    navbar.style.background = '#FFFFFF';
+    navbar.style.borderBottomColor = 'rgba(71, 85, 105, 0.1)';
+  }
+});
 
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="footer-content">
-            <div class="footer-links">
-                <a href="#privacy">Privacy Policy</a>
-                <a href="#terms">Terms of Service</a>
-                <a href="#careers">Careers</a>
-            </div>
-            <div class="footer-copyright">
-                © 2025 StrategicPro. All rights reserved.
-            </div>
-            <div class="footer-design">
-                Design: <a href="https://www.tooplate.com" target="_blank">Tooplate</a>
-            </div>
-        </div>
-    </footer>
-<script src="tooplate-strategic-scripts.js"></script>
-</body>
-</html>
+// Contact Form Submission
+const contactForm = document.querySelector('.contact-form');
+if (contactForm) {
+  contactForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const submitBtn = contactForm.querySelector('.submit-btn');
+    const originalText = submitBtn.textContent;
+    submitBtn.textContent = 'Connecting...';
+    submitBtn.style.background = 'linear-gradient(135deg, #10b981, #059669)';
+    submitBtn.classList.add('loading');
+    setTimeout(() => {
+      submitBtn.textContent = 'Welcome to PingUp!';
+      submitBtn.classList.remove('loading');
+      setTimeout(() => {
+        submitBtn.textContent = originalText;
+        submitBtn.style.background = 'linear-gradient(135deg, #64748b, #475569)';
+        contactForm.reset();
+      }, 3000);
+    }, 2000);
+  });
+}
+// Hover effects for service tabs
+document.querySelectorAll('.service-tab').forEach((tab) => {
+  tab.addEventListener('mouseenter', () => {
+    if (!tab.classList.contains('active')) {
+      tab.style.transform = 'translateX(5px)';
+      tab.style.boxShadow = '0 10px 25px rgba(71, 85, 105, 0.1)';
+    }
+  });
+  tab.addEventListener('mouseleave', () => {
+    if (!tab.classList.contains('active')) {
+      tab.style.transform = 'translateX(0)';
+      tab.style.boxShadow = 'none';
+    }
+  });
+});
+
+// Parallax effect for hero and geometric shapes
+window.addEventListener('scroll', () => {
+  const scrolled = window.pageYOffset;
+  const parallaxElements = document.querySelectorAll('.geometric-shapes, .hero-content');
+  parallaxElements.forEach((element, index) => {
+    const speed = 0.3 + (index * 0.2);
+    if (scrolled < window.innerHeight) {
+      element.style.transform = `translateY(${scrolled * speed}px)`;
+    }
+  });
+
+  // Geometric shapes rotation
+  const shapes = document.querySelectorAll('.geo-shape');
+  shapes.forEach((shape, index) => {
+    const rotation = scrolled * 0.05 * (index + 1);
+    shape.style.transform = `rotate(${rotation}deg)`;
+  });
+});
+
+// Interactive testimonials
+document.querySelectorAll('.testimonial-content').forEach(testimonial => {
+  testimonial.addEventListener('mouseenter', () => {
+    testimonial.style.transform = 'scale(1.02) translateY(-5px)';
+    testimonial.style.boxShadow = '0 25px 50px rgba(71, 85, 105, 0.2)';
+  });
+  testimonial.addEventListener('mouseleave', () => {
+    testimonial.style.transform = 'scale(1) translateY(0)';
+    testimonial.style.boxShadow = '0 15px 35px rgba(71, 85, 105, 0.1)';
+  });
+});
